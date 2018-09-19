@@ -40,11 +40,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void GainHealth(float amt)
     {
-        this.UseHealth(amt * -1);
+        this.Hurt(amt * -1);
     }
 
-    public void UseHealth(float amt)
+    public void Hurt(float amt)
     {
-        this.currentHealth = Mathf.Clamp(this.currentHealth + amt, 0, this.maxHealth);
+        this.currentHealth = Mathf.Clamp(this.currentHealth - amt, 0, this.maxHealth);
     }
 }

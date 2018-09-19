@@ -99,8 +99,7 @@ public class PhysicsEntity : MonoBehaviour
 
 
         }
-
-        Debug.Log(distance);
+        
         this.rb2d.position = this.rb2d.position + move.normalized * distance;
     }
 }

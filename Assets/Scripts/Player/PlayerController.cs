@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : PhysicsEntity
 {
+    public PlayerHealth health;
+
     [SerializeField]
     private bool isAlive = true;
 
@@ -48,6 +50,11 @@ public class PlayerController : PhysicsEntity
     {
         if (!this.isAlive) return;
 
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            GetComponentInChildren<Gun>().Fire();
+        }
+
         Vector2 move = Vector2.zero;
 
         move.x = Input.GetAxis("Horizontal");
@@ -71,5 +78,13 @@ public class PlayerController : PhysicsEntity
         }
 
         this.targetVelocity = move * this.maxSpeed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            this.health.Hurt(5f);
+        }
     }
 }
