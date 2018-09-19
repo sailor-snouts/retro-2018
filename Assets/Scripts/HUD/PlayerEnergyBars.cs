@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEnergy : MonoBehaviour
+public class PlayerEnergyBars : MonoBehaviour
 {
     [SerializeField]
     private float maxEnergy = 100;

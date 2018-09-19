@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4549056546447538}
   - component: {fileID: 114702006598261804}
   m_Layer: 0
-  m_Name: Energy
+  m_Name: EnergyBars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
