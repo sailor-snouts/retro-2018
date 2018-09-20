@@ -52,7 +52,8 @@ public class PlayerController : PhysicsEntity
 
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
-            GetComponentInChildren<Gun>().Fire();
+            Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 0f);
+            GetComponentInChildren<Gun>().Fire(fireDirection);
         }
 
         Vector2 move = Vector2.zero;
@@ -86,5 +87,10 @@ public class PlayerController : PhysicsEntity
         {
             this.health.Hurt(5f);
         }
+    }
+
+    public PlayerHealth GetHealth()
+    {
+        return this.health;
     }
 }

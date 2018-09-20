@@ -13,7 +13,13 @@ public class Bullet : MonoBehaviour {
     private bool isFriendly = true;
     [SerializeField]
     private float killAfter = 1f;
-    
+
+
+    public void SetDirection(Vector2 dir)
+    {
+        this.direction = dir.normalized;
+    }
+
     void Update()
     {
         this.killAfter -= Time.deltaTime;
@@ -30,12 +36,12 @@ public class Bullet : MonoBehaviour {
     {
         if (this.isFriendly && collision.gameObject.tag == "Enemy")
         {
-            // hurt enemy
+            collision.gameObject.GetComponent<EnemyHealth>().Hurt(this.dmg);
             Destroy(this.gameObject);
         }
         else if (!this.isFriendly && collision.gameObject.tag == "Player")
         {
-            // hurt player
+            collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
             Destroy(this.gameObject);
         }
     }

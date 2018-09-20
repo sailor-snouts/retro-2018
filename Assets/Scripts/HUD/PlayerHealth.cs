@@ -28,14 +28,14 @@ public class PlayerHealth : MonoBehaviour
         this.previousHealth = this.currentHealth;
     }
 
-    public bool IsAlive()
-    {
-        return this.HasEnoughHealth(0f);
-    }
-
     public bool HasEnoughHealth(float amt)
     {
         return this.currentHealth > amt;
+    }
+
+    public bool IsAlive()
+    {
+        return this.HasEnoughHealth(0f);
     }
 
     public void GainHealth(float amt)
