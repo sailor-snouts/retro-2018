@@ -425,7 +425,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 443528173}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.562447, y: -2.9775019, z: -10}
+  m_LocalPosition: {x: -8.562496, y: -2.9775019, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1556740645}
@@ -688,7 +688,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.562447, y: -2.9775019, z: -10}
+  m_LocalPosition: {x: -8.562496, y: -2.9775019, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 1873962774}
   - component: {fileID: 1873962773}
   m_Layer: 0
-  m_Name: Pause
+  m_Name: Navigation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1148,10 +1148,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1873962772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23feb61189e98e04f811a4c414d45d89, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ea1ef1ff9654f55b9538f36b3fad9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseScene: Scenes/Pause
 --- !u!4 &1873962774
 Transform:
   m_ObjectHideFlags: 0
@@ -1159,7 +1158,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1873962772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7887652, y: 0.37105396, z: -0.048596326}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
