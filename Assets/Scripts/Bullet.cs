@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     [SerializeField]
-    private Vector2 direction;
+    protected Vector2 direction;
     [SerializeField]
-    private float velocity = 1f;
+    protected float velocity = 1f;
     [SerializeField]
-    private float dmg = 1f;
+    protected float dmg = 1f;
     [SerializeField]
-    private bool isFriendly = true;
+    protected bool isFriendly = true;
     [SerializeField]
-    private float killAfter = 1f;
+    protected float killAfter = 1f;
 
 
     public void SetDirection(Vector2 dir)
