@@ -6,11 +6,22 @@ using UnityEngine.SceneManagement;
 public class SimpleSceneTransition : MonoBehaviour
 {
     [SerializeField]
-    private string scene;
+    private string scene = null;
     [SerializeField]
     private bool async = true;
     [SerializeField]
     private bool onAnyKey = true;
+    [SerializeField]
+    private bool timed = false;
+    [SerializeField]
+    private float lifetime = 10.0f;
+
+    private void Start()
+    {
+        if( timed ) {
+            Invoke("Change", lifetime);
+        }
+    }
 
     private void Update()
     {
