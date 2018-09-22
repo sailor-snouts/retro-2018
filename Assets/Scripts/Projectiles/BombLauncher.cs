@@ -7,10 +7,7 @@ public class BombLauncher : MonoBehaviour {
 
     public void Fire(Vector2 direction)
     {
-        GameObject bomb = Instantiate(this.bomb);
-        bomb.transform.position = this.transform.position;
+        GameObject bomb = Instantiate(this.bomb, this.transform);
         bomb.GetComponent<Bomb>().SetDirection(direction);
-
-        bomb.transform.Rotate(Vector3.forward, Vector2.Angle(Vector2.right, direction));
     }
 }

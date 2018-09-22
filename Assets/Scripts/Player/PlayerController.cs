@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class PlayerController : PhysicsEntity
 {
     public PlayerHealth health;
@@ -26,10 +27,12 @@ public class PlayerController : PhysicsEntity
     private bool isFacingRight = true;
 
     private SpriteRenderer spriteRenderer;
+    private Animator anim;
 
     void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -46,36 +49,52 @@ public class PlayerController : PhysicsEntity
         this.jumpVelocity = Mathf.Sqrt(-2f * gravity * jumpHeight);
     }
 
-    protected override void ComputeVelocity()
+    private void Update()
     {
         if (!this.isAlive) return;
 
-        if(Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 0f);
-            GetComponentInChildren<BulletGenerator>().Fire(fireDirection);
-        }
 
-        if (Input.GetKeyDown(KeyCode.RightControl))
-        {
-            Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 3f);
-            GetComponentInChildren<BombLauncher>().Fire(fireDirection);
-        }
+        this.velocity.x = Input.GetAxis("Horizontal");
 
-        Vector2 move = Vector2.zero;
-
-        move.x = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown(KeyCode.Space) && this.grounded)
+        if (Input.GetButtonDown("Fire2") && this.grounded)
         {
             this.velocity.y = this.jumpVelocity;
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetButtonUp("Fire2"))
         {
             if (this.velocity.y > 0)
             {
                 this.velocity.y = this.velocity.y * this.jumpRelease;
             }
         }
+
+        base.Update();
+
+        this.anim.SetBool("IsShooting", false);
+        this.anim.SetBool("IsThrowing", false);
+        this.anim.SetBool("IsHurt", false);
+
+        if (Input.GetAxis("Vertical") > 0.5f && Input.GetButtonDown("Fire1"))
+        {
+            this.anim.SetBool("IsThrowing", true);
+            GetComponentInChildren<BombLauncher>().Fire(new Vector2(this.isFacingRight ? 1f : -1f, 3f));
+        }
+        else if (Input.GetButtonDown("Fire1"))
+        {
+            Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 0f);
+            GetComponentInChildren<BulletGenerator>().Fire(fireDirection);
+            this.anim.SetBool("IsShooting", true);
+        }
+
+        this.anim.SetBool("IsRunning", Mathf.Abs(this.velocity.x) > 0.1);
+        this.anim.SetFloat("JumpVelocity", Mathf.Abs(this.velocity.y));
+    }
+
+    protected override void ComputeVelocity()
+    {
+        Vector2 move = Vector2.zero;
+
+        move.x = this.velocity.x;
 
         if ((move.x > 0.01f && !this.isFacingRight) || (move.x < -0.01f && this.isFacingRight))
         {
@@ -92,6 +111,7 @@ public class PlayerController : PhysicsEntity
         if (collision.gameObject.tag == "Enemy")
         {
             this.health.Hurt(5f);
+            this.anim.SetBool("IsHurt", true);
         }
     }
 

@@ -16,12 +16,18 @@ public class Bomb : Bullet {
     private void OnEnable()
     {
         this.rb2d = GetComponent<Rigidbody2D>();
-        rb2d.velocity = this.direction.normalized * this.velocity;
+        this.SetDirection(this.direction);
     }
 
     void Update()
     {
         // do nothing, overwrite parent
+    }
+
+    public void SetDirection(Vector2 dir)
+    {
+        this.direction = dir.normalized;
+        rb2d.velocity = this.direction.normalized * this.velocity;
     }
 
     private void FixedUpdate()
