@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 5cb7cc0c96b97034cbd7bd9231587ab0
   - enabled: 1
+    path: Assets/Scenes/OpeningCrawl.unity
+    guid: 2639f741e5a8741658031c11d22c6e86
+  - enabled: 1
     path: Assets/Scenes/sandbox-robert.unity
     guid: 4d3bd8e42ee6c694d8ccc7dfe84d0b1e
   - enabled: 1

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Navigation : MonoBehaviour
@@ -59,6 +60,12 @@ public class Navigation : MonoBehaviour
     {
         Application.Quit();
     }
+
+    internal void GoToScene(string gotoSceneName)
+    {
+        SceneManager.LoadScene(gotoSceneName);
+    }
+
     #endregion
 
     #region Modals
