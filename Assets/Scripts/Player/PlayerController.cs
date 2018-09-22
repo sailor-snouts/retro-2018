@@ -53,7 +53,13 @@ public class PlayerController : PhysicsEntity
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
             Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 0f);
-            GetComponentInChildren<Gun>().Fire(fireDirection);
+            GetComponentInChildren<BulletGenerator>().Fire(fireDirection);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightControl))
+        {
+            Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 3f);
+            GetComponentInChildren<BombLauncher>().Fire(fireDirection);
         }
 
         Vector2 move = Vector2.zero;

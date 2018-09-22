@@ -5,23 +5,48 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 public class Bomb : Bullet {
-    [SerializeField]
-    protected float apexHeight = 2f;
-
-    [SerializeField]
-    protected float apexTime = 5f;
-
     protected Rigidbody2D rb2d;
+
+    [SerializeField]
+    protected float delay = 2f;
+
+    [SerializeField]
+    protected float radius = 1f;
 
     private void OnEnable()
     {
         this.rb2d = GetComponent<Rigidbody2D>();
-
-        rb2d.velocity = this.direction.normalized * velocity;
+        rb2d.velocity = this.direction.normalized * this.velocity;
     }
 
-    private void Update()
+    void Update()
     {
-        
+        // do nothing, overwrite parent
+    }
+
+    private void FixedUpdate()
+    {
+        this.delay -= Time.fixedDeltaTime;
+        if(this.delay < 0f)
+        {
+            this.Explode();
+        }
+    }
+
+    protected void Explode()
+    {
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(this.transform.position, this.radius);
+        foreach(Collider2D collision in collisions)
+        {
+            if (this.isFriendly && collision.gameObject.tag == "Enemy")
+            {
+                collision.gameObject.GetComponent<EnemyHealth>().Hurt(this.dmg);
+            }
+            else if (!this.isFriendly && collision.gameObject.tag == "Player")
+            {
+                collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
+            }
+        }
+        Destroy(this.gameObject);
     }
 }

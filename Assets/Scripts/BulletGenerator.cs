@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour {
+public class BulletGenerator : MonoBehaviour {
     public GameObject bullet;
 	
 	public void Fire(Vector2 direction)
