@@ -19,7 +19,6 @@ public class SelectMenuOnInput : MonoBehaviour {
         } else {
             Debug.LogWarning("Could not select default menu item - please configure script in Editor");
         }
-
     }
 
     void Update () {

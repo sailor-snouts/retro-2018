@@ -33,12 +33,17 @@ public class Navigation : MonoBehaviour
 
     public void PlayOnePlayerGame()
     {
-        SceneManager.LoadScene("sandbox-robert");
+        SceneManager.LoadScene("PlayerSelect");
     }
 
     public void PlayTwoPlayerGame()
     {
-        SceneManager.LoadScene("Sandbox");
+        SceneManager.LoadScene("PlayerSelect");
+    }
+
+    public void StartGame() 
+    {
+        SceneManager.LoadScene("sandbox-robert");
     }
 
     public void WinGame()
@@ -60,7 +65,7 @@ public class Navigation : MonoBehaviour
     {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#else
             Application.Quit ();
         #endif
     }
