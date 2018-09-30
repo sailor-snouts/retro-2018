@@ -49,14 +49,14 @@ public class PlayerController : PhysicsEntity
         this.jumpVelocity = Mathf.Sqrt(-2f * gravity * jumpHeight);
     }
 
-    private void Update()
+    protected void Update()
     {
         if (!this.isAlive) return;
 
 
         this.velocity.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Fire2") && this.grounded)
+        if (Input.GetButtonDown("Fire2") && this.IsGrounded())
         {
             this.velocity.y = this.jumpVelocity;
         }
@@ -77,16 +77,14 @@ public class PlayerController : PhysicsEntity
         if (Input.GetAxis("Vertical") > 0.5f && Input.GetButtonDown("Fire1"))
         {
             this.anim.SetBool("IsThrowing", true);
-            GetComponentInChildren<BombLauncher>().Fire(new Vector2(this.isFacingRight ? 1f : -1f, 3f));
         }
         else if (Input.GetButtonDown("Fire1"))
         {
-            Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 0f);
-            GetComponentInChildren<BulletGenerator>().Fire(fireDirection);
             this.anim.SetBool("IsShooting", true);
         }
 
         this.anim.SetBool("IsRunning", Mathf.Abs(this.velocity.x) > 0.1);
+        this.anim.SetBool("IsGrounded", this.IsGrounded());
         this.anim.SetFloat("JumpVelocity", Mathf.Abs(this.velocity.y));
     }
 
@@ -98,21 +96,33 @@ public class PlayerController : PhysicsEntity
 
         if ((move.x > 0.01f && !this.isFacingRight) || (move.x < -0.01f && this.isFacingRight))
         {
-            this.spriteRenderer.flipX = !this.spriteRenderer.flipX;
+            //this.spriteRenderer.flipX = !this.spriteRenderer.flipX;
             this.isFacingRight = !this.isFacingRight;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 
         }
 
         this.targetVelocity = move * this.maxSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             this.health.Hurt(5f);
             this.anim.SetBool("IsHurt", true);
         }
+    }
+
+    protected void Throw()
+    {
+        GetComponentInChildren<BombLauncher>().Fire(new Vector2(this.isFacingRight ? 1f : -1f, 3f));
+    }
+
+    protected void Shoot()
+    {
+        Vector2 fireDirection = new Vector2(this.isFacingRight ? 1f : -1f, 0f);
+        GetComponentInChildren<BulletGenerator>().Fire(fireDirection);
     }
 
     public PlayerHealth GetHealth()

@@ -102,4 +102,9 @@ public class PhysicsEntity : MonoBehaviour
         
         this.rb2d.position = this.rb2d.position + move.normalized * distance;
     }
+
+    public bool IsGrounded()
+    {
+        return this.grounded;
+    }
 }

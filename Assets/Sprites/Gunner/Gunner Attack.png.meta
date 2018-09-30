@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 5d3231660c226e243b9caf6c147646fb
+guid: edb56a2f5389601489cbf41ea8094bf2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Gunner_Run(60x30)(8fps)_0
-    21300002: Gunner_Run(60x30)(8fps)_1
-    21300004: Gunner_Run(60x30)(8fps)_2
-    21300006: Gunner_Run(60x30)(8fps)_3
+    21300000: Gunner Attack_0
+    21300002: Gunner Attack_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -35,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -95,27 +93,16 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gunner_Run(60x30)(8fps)_0
+      name: Gunner Attack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,18 +111,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5733b9c5aee886542b116444e7496191
+      spriteID: 4006165020a52a24a85b50d1503923c0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gunner_Run(60x30)(8fps)_1
+      name: Gunner Attack_1
       rect:
         serializedVersion: 2
-        x: 60
+        x: 76
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -144,47 +131,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29c48c921225ce944bab2afecd9d1bab
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gunner_Run(60x30)(8fps)_2
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 60
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f59d4c7e4f269046932103fcbc013b5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gunner_Run(60x30)(8fps)_3
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 0
-        width: 60
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab1f62cacd1c7004794c222dc704e18c
+      spriteID: 18b65eab1da0cf345940dc818248f83d
       vertices: []
       indices: 
       edges: []
@@ -192,7 +139,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 344f6c15a7cd2c843baf2c91512ffee7
+    spriteID: 369b6a4b3b9784642bd627f4e0688371
     vertices: []
     indices: 
     edges: []

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: c84ca70516b4d1749882ad41d2901566
+guid: 77d7aff515d13c7429d6fff23aa22995
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Gunner_Attack_Run(60x30)(8fps)_0
-    21300002: Gunner_Attack_Run(60x30)(8fps)_1
-    21300004: Gunner_Attack_Run(60x30)(8fps)_2
-    21300006: Gunner_Attack_Run(60x30)(8fps)_3
+    21300000: gunnerjump(76x30)_0
+    21300002: gunnerjump(76x30)_1
+    21300004: gunnerjump(76x30)_2
+    21300006: gunnerjump(76x30)_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -35,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -95,27 +95,16 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gunner_Attack_Run(60x30)(8fps)_0
+      name: gunnerjump(76x30)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,18 +113,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9598316b5fa6024f8f6f2bf01a636b7
+      spriteID: ac8d7c00c35eaf34ea5bb307dc178c7a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gunner_Attack_Run(60x30)(8fps)_1
+      name: gunnerjump(76x30)_1
       rect:
         serializedVersion: 2
-        x: 60
+        x: 76
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -144,18 +133,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b14a1231d9543e94288432635d5dc7c4
+      spriteID: 481dde9c999e42547aae09a3a5eb17ce
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gunner_Attack_Run(60x30)(8fps)_2
+      name: gunnerjump(76x30)_2
       rect:
         serializedVersion: 2
-        x: 120
+        x: 152
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -164,18 +153,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e69c6740a9ba6d4db919e3209bbc293
+      spriteID: e456bbbba4306fb4db05fa32d55b3374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gunner_Attack_Run(60x30)(8fps)_3
+      name: gunnerjump(76x30)_3
       rect:
         serializedVersion: 2
-        x: 180
+        x: 228
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4b5a6808ae0331448703b205be132bf
+      spriteID: 973b547cd9270bf43a691f97d13af121
       vertices: []
       indices: 
       edges: []
@@ -192,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e4ae84175877618468f5e3864c424cad
+    spriteID: e7cf0f963ccf0b041bd4750d4f735e5f
     vertices: []
     indices: 
     edges: []
