@@ -1,50 +1,78 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerSelectController : MonoBehaviour {
 
     [SerializeField]
-    Text pressStartToJoin;
+    Text pressStartToJoin = null;
+    [SerializeField]
+    GameObject[] playerTypeSprites = null;
+    [SerializeField]
+    Text playerTypeText = null;
+    [SerializeField]
+    Text playerTypeTextShadow;
+
+    //[SerializeField]
+    //GameObject arrowIcon = null;
+    //[SerializeField]
+    //GameObject[] menuOptions;
+    //[SerializeField]
+    //EventSystem eventSystem;
+
+
+    [SerializeField]
+    float inputLag = 0.1f;
+
+//    float inputLagRemaining = 0.0f;
+    float playerSelectLagRemaining = 0.0f;
 
     bool flashUp;
     bool playerTwo;
 
-	// Use this for initialization
+    int playerType = 0;
+    string[] playerTypeNames = new string[2];
+
+//    int selectedMenuOption;
+
 	void Start () {
         flashUp = false;
         playerTwo = false;
+
+        playerTypeNames[0] = "Gunner";
+        playerTypeNames[1] = "Paladin";
+
+        //eventSystem.SetSelectedGameObject(menuOptions[0]);
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
         if( !playerTwo ) {
             FlashPlayerTwoMessage(Time.deltaTime);
         }
 
-        // TODO: Figure out how to snap to -1 < 0 > 1
-        if( Input.GetAxisRaw("Horizontal") < Mathf.Epsilon ) {
-            // select character type Left Arrow
+        //if( selectedMenuOption == 0)
+            HandlePlayerSelectInput();
+    }
+
+    private void HandlePlayerSelectInput()
+    {
+        if (playerSelectLagRemaining >= Mathf.Epsilon)
+        {
+            playerSelectLagRemaining -= Time.deltaTime;
+            return;
         }
 
-        if (Input.GetAxisRaw("Horizontal") > Mathf.Epsilon)
-        {
-            // select character type Right Arrow
-        }
+        float horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetAxisRaw("Vertical") < Mathf.Epsilon)
+        if (horizontal != 0)
         {
-            // select character color Down Arrow
-        }
-
-        if (Input.GetAxisRaw("Vertical") > Mathf.Epsilon)
-        {
-            // select character color Up Arrow
+            ChangePlayerOne();
+            playerSelectLagRemaining = inputLag;
         }
     }
+
 
     private void FlashPlayerTwoMessage(float deltaTime)
     {
@@ -75,7 +103,13 @@ public class PlayerSelectController : MonoBehaviour {
     }
 
     public void ChangePlayerOne() {
+        playerTypeSprites[playerType].SetActive(false);
 
+        playerType++;
+        playerType %= 2;
+
+        playerTypeText.text = playerTypeNames[playerType];
+        playerTypeSprites[playerType].SetActive(true);
     }
 
     public void ChangePlayerTwo()

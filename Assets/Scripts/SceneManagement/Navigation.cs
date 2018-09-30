@@ -28,6 +28,10 @@ public class Navigation : MonoBehaviour
     #region New Scenes
     public void Title()
     {
+        if(isPaused) {
+            UnpauseGame();
+        }
+
         SceneManager.LoadScene("Title");
     }
 
@@ -65,7 +69,7 @@ public class Navigation : MonoBehaviour
     {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-#else
+        #else
             Application.Quit ();
         #endif
     }
@@ -80,13 +84,20 @@ public class Navigation : MonoBehaviour
     #region Modals
     public void PauseGame()
     {
+        Navigation.isPaused = true;
         Time.timeScale = 0F;
         SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
     }
 
+    public void UnpauseGame() 
+    {
+        Navigation.isPaused = false;
+        Time.timeScale = 1F;
+    }
+
     public void ResumeGame()
     {
-        Time.timeScale = 1F;
+        UnpauseGame();
         GoBack("Pause");
     }
 
