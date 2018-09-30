@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Bullet : MonoBehaviour {
     [SerializeField]
     protected Vector2 direction;
@@ -14,6 +15,13 @@ public class Bullet : MonoBehaviour {
     [SerializeField]
     protected float killAfter = 1f;
 
+    protected Animator anim;
+
+
+    public void OnEnable()
+    {
+        this.anim = GetComponent<Animator>();
+    }
 
     public void SetDirection(Vector2 dir)
     {
@@ -25,24 +33,35 @@ public class Bullet : MonoBehaviour {
         this.killAfter -= Time.deltaTime;
         if(this.killAfter < 0f)
         {
-            Destroy(this.gameObject);
+            this.Hit();
 
             return;
         }
         this.transform.position = (Vector2) this.transform.position + this.direction.normalized * this.velocity * Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (this.isFriendly && collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyHealth>().Hurt(this.dmg);
-            Destroy(this.gameObject);
+            this.Hit();
         }
         else if (!this.isFriendly && collision.gameObject.tag == "Player")
         {
             collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
-            Destroy(this.gameObject);
+            this.Hit();
         }
+    }
+
+    protected void Hit()
+    {
+        this.velocity = 0;
+        this.anim.SetBool("IsHit", true);
+    }
+
+    protected void Die()
+    {
+        Destroy(this.gameObject);
     }
 }

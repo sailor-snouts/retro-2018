@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Animator))]
 public class Bomb : Bullet {
     protected Rigidbody2D rb2d;
 
@@ -15,6 +16,7 @@ public class Bomb : Bullet {
 
     private void OnEnable()
     {
+        base.OnEnable();
         this.rb2d = GetComponent<Rigidbody2D>();
         this.SetDirection(this.direction);
     }
@@ -35,12 +37,18 @@ public class Bomb : Bullet {
         this.delay -= Time.fixedDeltaTime;
         if(this.delay < 0f)
         {
-            this.Explode();
+            this.StartExplosion();
         }
+    }
+
+    protected void StartExplosion()
+    {
+        this.anim.SetBool("IsExplode", true);
     }
 
     protected void Explode()
     {
+        this.rb2d.gravityScale = 0;
         Collider2D[] collisions = Physics2D.OverlapCircleAll(this.transform.position, this.radius);
         foreach(Collider2D collision in collisions)
         {
@@ -53,6 +61,5 @@ public class Bomb : Bullet {
                 collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
             }
         }
-        Destroy(this.gameObject);
     }
 }
