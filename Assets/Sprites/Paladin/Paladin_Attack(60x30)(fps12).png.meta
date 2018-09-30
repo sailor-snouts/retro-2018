@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: c3881d46a0e71467d86e60e55463e5ce
+guid: 810092136198dec438f8a8792b430366
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Paladin_Run(60x30)(8fps)_0
-    21300002: Paladin_Run(60x30)(8fps)_1
-    21300004: Paladin_Run(60x30)(8fps)_2
-    21300006: Paladin_Run(60x30)(8fps)_3
+    21300000: Paladin_Attack(60x30)(fps12)_0
+    21300002: Paladin_Attack(60x30)(fps12)_1
+    21300004: Paladin_Attack(60x30)(fps12)_2
+    21300006: Paladin_Attack(60x30)(fps12)_3
+    21300008: Paladin_Attack(60x30)(fps12)_4
+    21300010: Paladin_Attack(60x30)(fps12)_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -99,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_0
+      name: Paladin_Attack(60x30)(fps12)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,13 +115,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d2e1ea4e8ba34e24b4a6aef5c92a6fd
+      spriteID: d9ca0a168f4b04442b0c0d71c207d5bf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_1
+      name: Paladin_Attack(60x30)(fps12)_1
       rect:
         serializedVersion: 2
         x: 60
@@ -133,13 +135,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f48ba2ad493a4896a3820b242707d5b
+      spriteID: ad7940058102a55498c07aca3939c9ba
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_2
+      name: Paladin_Attack(60x30)(fps12)_2
       rect:
         serializedVersion: 2
         x: 120
@@ -153,13 +155,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92114429bf9124c87a37350e14790bc1
+      spriteID: b39d05b687ce04a4fbe58b0d658efec7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_3
+      name: Paladin_Attack(60x30)(fps12)_3
       rect:
         serializedVersion: 2
         x: 180
@@ -173,7 +175,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eafe45ede41734f84b361581c79d40b8
+      spriteID: d70e75cbf823d6a42a3493ad4db0f03e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paladin_Attack(60x30)(fps12)_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2486f853494fa934a89594738727dc0a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paladin_Attack(60x30)(fps12)_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 60
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096989b327d3de54e93ea1cc4181ff8a
       vertices: []
       indices: 
       edges: []
@@ -181,7 +223,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d515acf282dc04f0d91026d843f990b1
+    spriteID: 0d248c6f9583efd4389be607f4138b38
     vertices: []
     indices: 
     edges: []

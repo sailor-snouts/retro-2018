@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: c3881d46a0e71467d86e60e55463e5ce
+guid: dee87931094f89244b3b2470dbfeb80d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Paladin_Run(60x30)(8fps)_0
-    21300002: Paladin_Run(60x30)(8fps)_1
-    21300004: Paladin_Run(60x30)(8fps)_2
-    21300006: Paladin_Run(60x30)(8fps)_3
+    21300000: Paladin_Shield(60x30)(12fps)_0
+    21300002: Paladin_Shield(60x30)(12fps)_1
+    21300004: Paladin_Shield(60x30)(12fps)_2
+    21300006: Paladin_Shield(60x30)(12fps)_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -99,7 +99,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_0
+      name: Paladin_Shield(60x30)(12fps)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,13 +113,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d2e1ea4e8ba34e24b4a6aef5c92a6fd
+      spriteID: faa3d7c022aed2f4d9f1415254bff407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_1
+      name: Paladin_Shield(60x30)(12fps)_1
       rect:
         serializedVersion: 2
         x: 60
@@ -133,13 +133,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f48ba2ad493a4896a3820b242707d5b
+      spriteID: c638ece5148ce194397613a76a83bddf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_2
+      name: Paladin_Shield(60x30)(12fps)_2
       rect:
         serializedVersion: 2
         x: 120
@@ -153,13 +153,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92114429bf9124c87a37350e14790bc1
+      spriteID: 18443b627c127f446b7d8fe1489ae7f8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Run(60x30)(8fps)_3
+      name: Paladin_Shield(60x30)(12fps)_3
       rect:
         serializedVersion: 2
         x: 180
@@ -173,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eafe45ede41734f84b361581c79d40b8
+      spriteID: 34c2ae02109b71644adc7426af4e8c45
       vertices: []
       indices: 
       edges: []
@@ -181,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d515acf282dc04f0d91026d843f990b1
+    spriteID: 7622e25513881724a92eaff19ecd8145
     vertices: []
     indices: 
     edges: []
