@@ -1,21 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerSelectController : MonoBehaviour {
 
     [SerializeField]
-    Text pressStartToJoin;
+    Text pressStartToJoin = null;
     [SerializeField]
-    GameObject[] playerTypeSprites;
+    GameObject[] playerTypeSprites = null;
     [SerializeField]
-    Text playerTypeText;
+    Text playerTypeText = null;
     [SerializeField]
     Text playerTypeTextShadow;
 
+    //[SerializeField]
+    //GameObject arrowIcon = null;
+    //[SerializeField]
+    //GameObject[] menuOptions;
+    //[SerializeField]
+    //EventSystem eventSystem;
+
+
     [SerializeField]
-    GameObject arrowIcon;
-    [SerializeField]
-    int menuSize;
+    float inputLag = 0.1f;
+
+//    float inputLagRemaining = 0.0f;
+    float playerSelectLagRemaining = 0.0f;
 
     bool flashUp;
     bool playerTwo;
@@ -23,9 +34,7 @@ public class PlayerSelectController : MonoBehaviour {
     int playerType = 0;
     string[] playerTypeNames = new string[2];
 
-    int selectedMenuOption;
-
-    float menuThreshold = 0.5f;
+//    int selectedMenuOption;
 
 	void Start () {
         flashUp = false;
@@ -33,6 +42,8 @@ public class PlayerSelectController : MonoBehaviour {
 
         playerTypeNames[0] = "Gunner";
         playerTypeNames[1] = "Paladin";
+
+        //eventSystem.SetSelectedGameObject(menuOptions[0]);
 	}
 	
 	void Update () {
@@ -41,54 +52,27 @@ public class PlayerSelectController : MonoBehaviour {
             FlashPlayerTwoMessage(Time.deltaTime);
         }
 
+        //if( selectedMenuOption == 0)
+            HandlePlayerSelectInput();
+    }
+
+    private void HandlePlayerSelectInput()
+    {
+        if (playerSelectLagRemaining >= Mathf.Epsilon)
+        {
+            playerSelectLagRemaining -= Time.deltaTime;
+            return;
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
-//        Debug.Log("unclamped horizontal: " + horizontal);
 
-        //if (Mathf.Abs(horizontal) < 0.0f)
-        //{
-        //    horizontal = -1.0f;
-        //}
-        //else if (horizontal > 0.0f)
-        //{
-        //    horizontal = 1.0f;
-        //}
-        //else 
-        //    horizontal = 0.0f;
-
-        //Debug.Log("clamped horizontal: " + horizontal);
-
-        if ( horizontal < 0 ) {
-            // select character type Left Arrow
-        }
-
-        if (horizontal > 0)
+        if (horizontal != 0)
         {
-            // select character type Right Arrow
-        }
-
-        float vertical = Input.GetAxisRaw("Vertical");
-        Debug.Log("unclamped vertical: " + vertical);
-
-        if (vertical < 0)
-        {
-            // select character color Down Arrow
-            selectedMenuOption++;
-            if (selectedMenuOption >= menuSize)
-                selectedMenuOption = 0;
-
-            arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, -2.575f - (0.875f * selectedMenuOption));
-        }
-
-        if (vertical > 0)
-        {
-            // select character color Up Arrow
-            selectedMenuOption--;
-            if (selectedMenuOption < 0)
-                selectedMenuOption = (menuSize - 1);
-
-            arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, -2.575f - (0.875f * selectedMenuOption));
+            ChangePlayerOne();
+            playerSelectLagRemaining = inputLag;
         }
     }
+
 
     private void FlashPlayerTwoMessage(float deltaTime)
     {

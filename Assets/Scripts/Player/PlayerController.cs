@@ -53,7 +53,6 @@ public class PlayerController : PhysicsEntity
     {
         if (!this.isAlive) return;
 
-
         this.velocity.x = Input.GetAxis("Horizontal");
 
         if (Input.GetButtonDown("Fire2") && this.grounded)
