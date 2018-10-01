@@ -19,6 +19,9 @@ public class MenuController : MonoBehaviour {
     [SerializeField]
     float inputLag = 0.1f;
 
+    [SerializeField]
+    string axisName = "PlayerOne";
+
     float inputLagRemaining = 0.0f;
 
     int selectedMenuOption;
@@ -40,7 +43,7 @@ public class MenuController : MonoBehaviour {
             return;
         }
 
-        float vertical = Input.GetAxisRaw("Vertical");
+        float vertical = Input.GetAxisRaw("Vertical_" + axisName);
 
         bool selectionChanged = false;
 

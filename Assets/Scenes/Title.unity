@@ -1010,6 +1010,7 @@ MonoBehaviour:
   - {fileID: 641666492}
   eventSystem: {fileID: 1518111962}
   inputLag: 0.15
+  axisName: PlayerOne
 --- !u!1 &1518111960
 GameObject:
   m_ObjectHideFlags: 0
