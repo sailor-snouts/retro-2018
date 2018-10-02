@@ -271,7 +271,7 @@ RectTransform:
   - {fileID: 1229310653}
   - {fileID: 1344807912}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -785,7 +785,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &715347296
 GameObject:
@@ -1475,6 +1475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1344807912}
   - component: {fileID: 1344807913}
+  - component: {fileID: 1344807914}
   m_Layer: 5
   m_Name: PlayerSelectMenu
   m_TagString: Untagged
@@ -1529,6 +1530,20 @@ MonoBehaviour:
   eventSystem: {fileID: 569066455}
   inputLag: 0.1
   axisName: PlayerOne
+--- !u!114 &1344807914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344807911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0cbeff5e0b341a8bee890e97c251ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigation: {fileID: 1601222846}
+  playerOneController: {fileID: 2039729397}
+  playerTwoController: {fileID: 1229310654}
 --- !u!1 &1415115399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1732,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697868508
 GameObject:
@@ -2163,7 +2178,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1601222846}
+      - m_Target: {fileID: 1344807914}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -2449,7 +2464,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2064016244
 MonoBehaviour:
@@ -2465,6 +2480,10 @@ MonoBehaviour:
   playerPrefabs:
   - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
   - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
+  playerOneActive: 1
+  playerTwoActive: 0
+  jumpHeight: 5
+  jumpApexTime: 0.5
 --- !u!1001 &2080716944
 Prefab:
   m_ObjectHideFlags: 0

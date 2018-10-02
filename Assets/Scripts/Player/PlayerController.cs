@@ -45,12 +45,12 @@ public class PlayerController : PhysicsEntity
         this.contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(this.gameObject.layer));
         this.contactFilter.useLayerMask = true;
 
-        float gravity = -1f * (2f * this.jumpHeight) / (this.jumpApexTime * this.jumpApexTime);
+        //float gravity = -1f * (2f * this.jumpHeight) / (this.jumpApexTime * this.jumpApexTime);
         // @TODO causes issues with multiplayer games move to a global entity
         // setting the timesclae r2bd is undefined, if we grab it here then the parent scribt has issues with jumping
         //this.rb2d.gravityScale = gravity;
-        Physics2D.gravity = new Vector2(0f, gravity); 
-        this.jumpVelocity = Mathf.Sqrt(-2f * gravity * jumpHeight);
+        //Physics2D.gravity = new Vector2(0f, gravity); 
+        this.jumpVelocity = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
     }
 
     protected void Update()

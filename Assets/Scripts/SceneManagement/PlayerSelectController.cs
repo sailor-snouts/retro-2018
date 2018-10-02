@@ -28,14 +28,15 @@ public class PlayerSelectController : MonoBehaviour {
         }
 
         if( playerOneController && playerOneController.HasJoined()) {
-            manager.AddPlayerOne(playerOneController.GetPlayerType());
+            manager.playerOneActive = true;
         }
 
         if( playerTwoController && playerTwoController.HasJoined() ) {
-            manager.AddPlayerTwo(playerTwoController.GetPlayerType());
+            manager.playerTwoActive = true;
         }
 
         navigation.StartGame();
+
     }
 
 }

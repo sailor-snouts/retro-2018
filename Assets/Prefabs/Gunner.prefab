@@ -305,6 +305,7 @@ MonoBehaviour:
   jumpHeight: 4
   jumpApexTime: 0.3
   jumpRelease: 0.5
+  axisName: PlayerOne
 --- !u!212 &212491302451889020
 SpriteRenderer:
   m_ObjectHideFlags: 1
