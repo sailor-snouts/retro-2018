@@ -22,7 +22,9 @@ public class PlayerPrefsManager : MonoBehaviour {
 	}
 
 	public static float GetMasterVolume() {
-		return PlayerPrefs.GetFloat (MASTER_VOLUME_KEY);
+        // TODO: Address once player can change settings
+        return 1.0f;
+		//return PlayerPrefs.GetFloat (MASTER_VOLUME_KEY);
 	}
 
 	public static void SetDifficulty(float difficulty) {
