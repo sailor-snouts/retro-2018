@@ -99,6 +99,7 @@ public class MenuController : MonoBehaviour {
 
     void HandleMenuEnterInput() {
         float enter = Input.GetAxisRaw("Submit_" + controlAxis);
+        Debug.Log("Got data from Submit_" + controlAxis + " ....  what? " + enter);
         if( enter > Mathf.Epsilon ) {
             Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
             button.OnSubmit(null);

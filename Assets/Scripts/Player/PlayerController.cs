@@ -73,9 +73,16 @@ public class PlayerController : PhysicsEntity
 
     protected void Update()
     {
+        Debug.Log("Horizontal_" + controlAxis + " down: " + Input.GetAxis("Horizontal_" + controlAxis));
+        Debug.Log("Vertical_" + controlAxis + " down: " + Input.GetAxis("Vertical_" + controlAxis));
+        Debug.Log("Fire1_" + controlAxis + " down: " + Input.GetAxisRaw("Fire1_" + controlAxis));
+        Debug.Log("Fire2_" + controlAxis + " down: " + Input.GetAxisRaw("Fire2_" + controlAxis));
+        Debug.Log("Fire3_" + controlAxis + " down: " + Input.GetAxisRaw("Fire3_" + controlAxis));
+
         if (!this.isAlive) return;
 
         this.velocity.x = Input.GetAxis("Horizontal_" + controlAxis);
+
 
         if (Input.GetButtonDown("Fire2_" + controlAxis) && this.IsGrounded())
         {
@@ -94,6 +101,8 @@ public class PlayerController : PhysicsEntity
         this.anim.SetBool("IsShooting", false);
         this.anim.SetBool("IsThrowing", false);
         this.anim.SetBool("IsHurt", false);
+
+        Debug.Log("Fire1_" + controlAxis + " down: " + Input.GetButtonDown("Fire1_" + controlAxis));
 
         if (Input.GetAxis("Vertical_" + controlAxis) > 0.5f && Input.GetButtonDown("Fire1_" + controlAxis))
         {

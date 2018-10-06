@@ -49,7 +49,7 @@ public class PlayerTypeSelectController : MonoBehaviour
         else
         {
             int controllerIndex = (axisName == "PlayerOne") ? 0 : 1;
-            if (Input.GetJoystickNames()[controllerIndex] != null)
+            if (Input.GetJoystickNames().Length > controllerIndex)
             {
                 Debug.Log("Using controller for " + axisName);
                 controlAxis = axisName + "_Joystick";
@@ -110,8 +110,6 @@ public class PlayerTypeSelectController : MonoBehaviour
 
     private void FlashPlayerTwoMessage(float deltaTime)
     {
-        Debug.Log("PressStartText size: " + pressStartText.Length);
-
         foreach( Text text in pressStartText ) {
             Color newAlpha = text.color;
 
