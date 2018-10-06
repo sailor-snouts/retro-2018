@@ -13,14 +13,15 @@ public class MenuController : MonoBehaviour {
     float menuOffset = -2.575f;
 
     [SerializeField]
-    GameObject[] menuOptions;
+    GameObject[] menuOptions = null;
     [SerializeField]
-    EventSystem eventSystem;
+    EventSystem eventSystem = null;
     [SerializeField]
     float inputLag = 0.1f;
 
     [SerializeField]
     string axisName = "PlayerOne";
+    private string controlAxis = "Joystick";
 
     float inputLagRemaining = 0.0f;
 
@@ -28,6 +29,24 @@ public class MenuController : MonoBehaviour {
 
     void Start () {
         eventSystem.SetSelectedGameObject(menuOptions[0]);
+
+
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            controlAxis = axisName + "_Keyboard";
+        } else {
+            int controllerIndex = (axisName == "PlayerOne") ? 0 : 1;
+            if (Input.GetJoystickNames()[controllerIndex] != null)
+            {
+                Debug.Log("Using controller for " + axisName);
+                controlAxis = axisName + "_Joystick";
+            }
+            else
+            {
+                Debug.Log("Using keyboard for " + axisName);
+                controlAxis = axisName + "_Keyboard";
+            }
+        }
     }
 
     // Update is called once per frame
@@ -43,7 +62,7 @@ public class MenuController : MonoBehaviour {
             return;
         }
 
-        float vertical = Input.GetAxisRaw("Vertical_" + axisName);
+        float vertical = Input.GetAxisRaw("Vertical_" + controlAxis);
 
         bool selectionChanged = false;
 

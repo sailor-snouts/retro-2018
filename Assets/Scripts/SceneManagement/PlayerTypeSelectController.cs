@@ -17,6 +17,7 @@ public class PlayerTypeSelectController : MonoBehaviour
     Text playerTypeTextShadow;
     [SerializeField]
     string axisName = "PlayerOne";
+    private string controlAxis = "Joystick";
 
     [SerializeField]
     float inputLag = 0.1f;
@@ -40,6 +41,26 @@ public class PlayerTypeSelectController : MonoBehaviour
 
         // Optimization: cache for text flashing performance
         pressStartText = pressStartPanel.GetComponentsInChildren<Text>();
+
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            controlAxis = axisName + "_Keyboard";
+        }
+        else
+        {
+            int controllerIndex = (axisName == "PlayerOne") ? 0 : 1;
+            if (Input.GetJoystickNames()[controllerIndex] != null)
+            {
+                Debug.Log("Using controller for " + axisName);
+                controlAxis = axisName + "_Joystick";
+            }
+            else
+            {
+                Debug.Log("Using keyboard for " + axisName);
+                controlAxis = axisName + "_Keyboard";
+            }
+        }
+
     }
 
     void Update()
@@ -48,11 +69,11 @@ public class PlayerTypeSelectController : MonoBehaviour
         {
             FlashPlayerTwoMessage(Time.deltaTime);
 
-            if( Input.GetAxisRaw("Pause_" + axisName) > 0 ) {
+            if( Input.GetAxisRaw("Pause_" + controlAxis) > 0 ) {
                 AddPlayer();
             }
         } else {
-            if (Input.GetAxisRaw("Cancel_" + axisName) > 0)
+            if (Input.GetAxisRaw("Cancel_" + controlAxis) > 0)
             {
                 DropPlayer();
             }
@@ -77,7 +98,7 @@ public class PlayerTypeSelectController : MonoBehaviour
             return;
         }
 
-        float horizontal = Input.GetAxisRaw("Horizontal_" + axisName);
+        float horizontal = Input.GetAxisRaw("Horizontal_" + controlAxis);
 
         if (horizontal != 0)
         {

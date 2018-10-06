@@ -14,17 +14,6 @@ public class Navigation : MonoBehaviour
     #region Handle Input
     void Update()
     {
-        int i = 0;
-        while (i < Input.GetJoystickNames().Length)
-        {
-            if (Mathf.Abs(Input.GetAxis("Horizontal_PlayerOne")) > 0.2F || Mathf.Abs(Input.GetAxis("Vertical_PlayerOne")) > 0.2F)
-                Debug.Log(Input.GetJoystickNames()[i] + " is moved - Player One");
-            if (Mathf.Abs(Input.GetAxis("Horizontal_PlayerTwo")) > 0.2F || Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo")) > 0.2F)
-                Debug.Log(Input.GetJoystickNames()[i] + " is moved - Player Two");
-            i++;
-        }
-
-
         if (Navigation.isPaused)
         {
             return;

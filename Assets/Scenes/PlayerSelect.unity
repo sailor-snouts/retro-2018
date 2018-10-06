@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 569066455}
   - component: {fileID: 569066456}
   m_Layer: 0
-  m_Name: EventSystem_PlayerOne
+  m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,10 +767,10 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal_PlayerOne
-  m_VerticalAxis: Vertical_PlayerOne
-  m_SubmitButton: Submit_PlayerOne
-  m_CancelButton: Cancel_PlayerOne
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0

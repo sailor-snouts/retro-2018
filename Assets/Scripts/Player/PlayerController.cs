@@ -27,6 +27,8 @@ public class PlayerController : PhysicsEntity
     [SerializeField]
     public string axisName = "PlayerOne";
 
+    private string controlAxis = "Joystick";
+
     protected float jumpVelocity = 0f;
     private bool isFacingRight = true;
 
@@ -51,19 +53,35 @@ public class PlayerController : PhysicsEntity
         //this.rb2d.gravityScale = gravity;
         //Physics2D.gravity = new Vector2(0f, gravity); 
         this.jumpVelocity = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
+
+        if(Input.GetJoystickNames().Length == 0 ) {
+            controlAxis = axisName + "_Keyboard";
+        } else {
+            int controllerIndex = (axisName == "PlayerOne") ? 0 : 1;
+            if (Input.GetJoystickNames()[controllerIndex] != null)
+            {
+                Debug.Log("Using controller for " + axisName);
+                controlAxis = axisName + "_Joystick";
+            }
+            else
+            {
+                Debug.Log("Using keyboard for " + axisName);
+                controlAxis = axisName + "_Keyboard";
+            }
+        }
     }
 
     protected void Update()
     {
         if (!this.isAlive) return;
 
-        this.velocity.x = Input.GetAxis("Horizontal_" + axisName);
+        this.velocity.x = Input.GetAxis("Horizontal_" + controlAxis);
 
-        if (Input.GetButtonDown("Fire2_" + axisName) && this.IsGrounded())
+        if (Input.GetButtonDown("Fire2_" + controlAxis) && this.IsGrounded())
         {
             this.velocity.y = this.jumpVelocity;
         }
-        else if (Input.GetButtonUp("Fire2_" + axisName))
+        else if (Input.GetButtonUp("Fire2_" + controlAxis))
         {
             if (this.velocity.y > 0)
             {
@@ -77,11 +95,11 @@ public class PlayerController : PhysicsEntity
         this.anim.SetBool("IsThrowing", false);
         this.anim.SetBool("IsHurt", false);
 
-        if (Input.GetAxis("Vertical_" + axisName) > 0.5f && Input.GetButtonDown("Fire1_" + axisName))
+        if (Input.GetAxis("Vertical_" + controlAxis) > 0.5f && Input.GetButtonDown("Fire1_" + controlAxis))
         {
             this.anim.SetBool("IsThrowing", true);
         }
-        else if (Input.GetButtonDown("Fire1_" + axisName))
+        else if (Input.GetButtonDown("Fire1_" + controlAxis))
         {
             this.anim.SetBool("IsShooting", true);
         }
