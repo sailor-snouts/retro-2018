@@ -19,7 +19,8 @@ public class Navigation : MonoBehaviour
             return;
         }
 
-        bool canPause = (SceneManager.GetActiveScene().name != "PlayerSelect");
+        bool canPause = (SceneManager.GetActiveScene().name != "PlayerSelect")
+            && (SceneManager.GetActiveScene().name != "Title");
 
         if (canPause && Input.GetAxisRaw("Pause") > 0)
         {

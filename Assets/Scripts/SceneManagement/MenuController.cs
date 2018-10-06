@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour {
 
@@ -52,6 +53,7 @@ public class MenuController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         HandleMenuSelectInput();
+        HandleMenuEnterInput();
     }
 
     void HandleMenuSelectInput()
@@ -95,4 +97,11 @@ public class MenuController : MonoBehaviour {
         }
     }
 
+    void HandleMenuEnterInput() {
+        float enter = Input.GetAxisRaw("Submit_" + controlAxis);
+        if( enter > Mathf.Epsilon ) {
+            Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
+            button.OnSubmit(null);
+        }
+    }
 }

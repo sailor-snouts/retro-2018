@@ -54,7 +54,7 @@ public class MusicManager : MonoBehaviour {
     void OnSceneFinishedUnloading(Scene scene)
     {
         Debug.Log("Scene unloaded: " + scene.buildIndex);
-        audioSource.Stop();
+        //audioSource.Stop();
     }
 
 	public void SetVolume(float volume) {
