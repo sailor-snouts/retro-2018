@@ -26,8 +26,9 @@ public class PlayerController : PhysicsEntity
     // Defaults to PlayerOne, set PlayerTwo to use those axes
     [SerializeField]
     public string axisName = "PlayerOne";
-
     private string controlAxis = "Joystick";
+
+    public PlayerInputManager inputManager;
 
     protected float jumpVelocity = 0f;
     private bool isFacingRight = true;
@@ -72,12 +73,11 @@ public class PlayerController : PhysicsEntity
 
         this.velocity.x = Input.GetAxis("Horizontal_" + controlAxis);
 
-
-        if (Input.GetButtonDown("Fire2_" + controlAxis) && this.IsGrounded())
+        if (this.inputManager.Jump() && this.IsGrounded())
         {
             this.velocity.y = this.jumpVelocity;
         }
-        else if (Input.GetButtonUp("Fire2_" + controlAxis))
+        else if (this.inputManager.Jump())
         {
             if (this.velocity.y > 0)
             {
@@ -91,13 +91,11 @@ public class PlayerController : PhysicsEntity
         this.anim.SetBool("IsThrowing", false);
         this.anim.SetBool("IsHurt", false);
 
-        Debug.Log("Fire1_" + controlAxis + " down: " + Input.GetButtonDown("Fire1_" + controlAxis));
-
-        if (Input.GetAxis("Vertical_" + controlAxis) > 0.5f && Input.GetButtonDown("Fire1_" + controlAxis))
+        if (Input.GetAxis("Vertical_" + controlAxis) > 0.5f && inputManager.Fire())
         {
             this.anim.SetBool("IsThrowing", true);
         }
-        else if (Input.GetButtonDown("Fire1_" + controlAxis))
+        else if (inputManager.Fire())
         {
             this.anim.SetBool("IsShooting", true);
         }
