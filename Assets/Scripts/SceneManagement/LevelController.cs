@@ -24,7 +24,13 @@ public class LevelController : MonoBehaviour {
                 PlayerController playerController = playerOne.GetComponent<PlayerController>();
                 playerController.axisName = "PlayerOne";
                 playerController.health = playerHealth;
+
+                PlayerInputManager inputManager = ScriptableObject.CreateInstance<PlayerInputManager>();
+                inputManager.Initialize(0);
+                playerController.inputManager = inputManager;
+
                 playerTransform = playerOne.transform;
+
             }
 
             if (manager.playerTwoActive)
@@ -34,6 +40,9 @@ public class LevelController : MonoBehaviour {
                 PlayerController playerController = playerTwo.GetComponent<PlayerController>();
                 playerController.axisName = "PlayerTwo";
                 playerController.health = playerHealth;
+                PlayerInputManager inputManager = ScriptableObject.CreateInstance<PlayerInputManager>();
+                inputManager.Initialize(1);
+                playerController.inputManager = inputManager;
             }
         }
 
