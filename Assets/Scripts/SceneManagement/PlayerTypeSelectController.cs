@@ -30,6 +30,7 @@ public class PlayerTypeSelectController : MonoBehaviour
     string[] playerTypeNames = new string[2];
     Text[] pressStartText = null;
 
+    PlayerInputManager inputManager;
 
     void Start()
     {
@@ -41,6 +42,11 @@ public class PlayerTypeSelectController : MonoBehaviour
 
         // Optimization: cache for text flashing performance
         pressStartText = pressStartPanel.GetComponentsInChildren<Text>();
+
+
+        inputManager = ScriptableObject.CreateInstance<PlayerInputManager>();
+        inputManager.Initialize((axisName == "PlayerOne") ? 0 : 1);
+
 
         if (Input.GetJoystickNames().Length == 0)
         {
@@ -69,11 +75,11 @@ public class PlayerTypeSelectController : MonoBehaviour
         {
             FlashPlayerTwoMessage(Time.deltaTime);
 
-            if( Input.GetAxisRaw("Pause_" + controlAxis) > 0 ) {
+            if( inputManager.Pause() ) {
                 AddPlayer();
             }
         } else {
-            if (Input.GetAxisRaw("Cancel_" + controlAxis) > 0)
+            if ( inputManager.Cancel() )
             {
                 DropPlayer();
             }
@@ -100,7 +106,7 @@ public class PlayerTypeSelectController : MonoBehaviour
 
         float horizontal = Input.GetAxisRaw("Horizontal_" + controlAxis);
 
-        if (horizontal != 0)
+        if (horizontal != 0 && (Mathf.Abs(horizontal) >= inputLag))
         {
             ChangePlayerType();
             playerSelectLagRemaining = inputLag;

@@ -14,8 +14,6 @@ public class Navigation : MonoBehaviour
     #region Handle Input
     void Update()
     {
-        Debug.Log("Joystick1Button0 Button down: " + Input.GetKeyDown(KeyCode.Joystick1Button0));
-
         if (Navigation.isPaused)
         {
             return;

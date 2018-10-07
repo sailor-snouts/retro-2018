@@ -1465,7 +1465,7 @@ MonoBehaviour:
   playerTypeText: {fileID: 235218076}
   playerTypeTextShadow: {fileID: 726269176}
   axisName: PlayerTwo
-  inputLag: 0.1
+  inputLag: 0.3
 --- !u!1 &1344807911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   - {fileID: 1924688748}
   - {fileID: 1835780205}
   eventSystem: {fileID: 569066455}
-  inputLag: 0.1
+  inputLag: 0.3
   axisName: PlayerOne
 --- !u!114 &1344807914
 MonoBehaviour:
@@ -2436,7 +2436,7 @@ MonoBehaviour:
   playerTypeText: {fileID: 1697868511}
   playerTypeTextShadow: {fileID: 2038711054}
   axisName: PlayerOne
-  inputLag: 0.1
+  inputLag: 0.3
 --- !u!1 &2064016242
 GameObject:
   m_ObjectHideFlags: 0

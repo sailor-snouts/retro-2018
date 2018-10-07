@@ -18,7 +18,7 @@ public class MenuController : MonoBehaviour {
     [SerializeField]
     EventSystem eventSystem = null;
     [SerializeField]
-    float inputLag = 0.1f;
+    float inputLag = 0.3f;
 
     [SerializeField]
     string axisName = "PlayerOne";
@@ -28,7 +28,13 @@ public class MenuController : MonoBehaviour {
 
     int selectedMenuOption;
 
+    PlayerInputManager inputManager;
+
     void Start () {
+
+        inputManager = ScriptableObject.CreateInstance<PlayerInputManager>();
+        inputManager.Initialize(0);
+
         eventSystem.SetSelectedGameObject(menuOptions[0]);
 
 
@@ -64,12 +70,13 @@ public class MenuController : MonoBehaviour {
             return;
         }
 
-        float vertical = Input.GetAxisRaw("Vertical_" + controlAxis);
-
+        float vertical = inputManager.GetAxis("Vertical_" + controlAxis);
         bool selectionChanged = false;
 
-        if (vertical < 0)
+        if (vertical < 0 && Mathf.Abs(vertical) >= inputLag)
         {
+            Debug.Log("Input 'down' detected: " + vertical);
+
             // select character color Down Arrow
             selectedMenuOption++;
             if (selectedMenuOption >= menuOptions.Length)
@@ -78,8 +85,10 @@ public class MenuController : MonoBehaviour {
             selectionChanged = true;
         }
 
-        if (vertical > 0)
+        if (vertical > 0 && (vertical >= inputLag))
         {
+            Debug.Log("Input 'up' detected: " + vertical);
+
             // select character color Up Arrow
             selectedMenuOption--;
             if (selectedMenuOption < 0)
@@ -90,6 +99,8 @@ public class MenuController : MonoBehaviour {
 
         if (selectionChanged)
         {
+            Debug.Log("Selection changed");
+
             if( arrowIcon )
                 arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, menuOffset - (menuSpacing * selectedMenuOption));
             inputLagRemaining = inputLag;
@@ -98,9 +109,8 @@ public class MenuController : MonoBehaviour {
     }
 
     void HandleMenuEnterInput() {
-        float enter = Input.GetAxisRaw("Submit_" + controlAxis);
-        Debug.Log("Got data from Submit_" + controlAxis + " ....  what? " + enter);
-        if( enter > Mathf.Epsilon ) {
+        bool enter = inputManager.Fire();
+        if( enter ) {
             Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
             button.OnSubmit(null);
         }
