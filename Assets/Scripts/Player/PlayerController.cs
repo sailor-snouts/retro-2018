@@ -41,18 +41,13 @@ public class PlayerController : PhysicsEntity
         this.anim = GetComponent<Animator>();
     }
 
-    void Start()
+    protected void Start()
     {
-        this.contactFilter.useTriggers = false;
-        this.contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(this.gameObject.layer));
-        this.contactFilter.useLayerMask = true;
+        base.Start();
 
-        //float gravity = -1f * (2f * this.jumpHeight) / (this.jumpApexTime * this.jumpApexTime);
-        // @TODO causes issues with multiplayer games move to a global entity
-        // setting the timesclae r2bd is undefined, if we grab it here then the parent scribt has issues with jumping
-        //this.rb2d.gravityScale = gravity;
-        //Physics2D.gravity = new Vector2(0f, gravity); 
-        this.jumpVelocity = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
+        float gravity = -1f * (2f * this.jumpHeight) / (this.jumpApexTime * this.jumpApexTime);
+        Physics2D.gravity = new Vector2(0f, gravity); 
+        this.jumpVelocity = Mathf.Sqrt(2f * -1f * Physics2D.gravity.y * jumpHeight);
 
         if(Input.GetJoystickNames().Length == 0 ) {
             controlAxis = axisName + "_Keyboard";
@@ -73,12 +68,6 @@ public class PlayerController : PhysicsEntity
 
     protected void Update()
     {
-        Debug.Log("Horizontal_" + controlAxis + " down: " + Input.GetAxis("Horizontal_" + controlAxis));
-        Debug.Log("Vertical_" + controlAxis + " down: " + Input.GetAxis("Vertical_" + controlAxis));
-        Debug.Log("Fire1_" + controlAxis + " down: " + Input.GetAxisRaw("Fire1_" + controlAxis));
-        Debug.Log("Fire2_" + controlAxis + " down: " + Input.GetAxisRaw("Fire2_" + controlAxis));
-        Debug.Log("Fire3_" + controlAxis + " down: " + Input.GetAxisRaw("Fire3_" + controlAxis));
-
         if (!this.isAlive) return;
 
         this.velocity.x = Input.GetAxis("Horizontal_" + controlAxis);

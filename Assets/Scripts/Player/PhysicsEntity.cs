@@ -25,7 +25,7 @@ public class PhysicsEntity : MonoBehaviour
         this.rb2d = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
+    protected void Start()
     {
         this.contactFilter.useTriggers = false;
         this.contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(this.gameObject.layer));

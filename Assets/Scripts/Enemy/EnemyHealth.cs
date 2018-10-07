@@ -11,7 +11,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        this.currentHealth = this.maxHealth;
+        if (this.currentHealth <= 0)
+        {
+            this.currentHealth = this.maxHealth;
+        }
     }
 
     private void Update()
