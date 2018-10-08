@@ -71,6 +71,8 @@ public class MenuController : MonoBehaviour {
         }
 
         float vertical = inputManager.GetAxis("Vertical_" + controlAxis);
+        Debug.Log("Input detected? " + vertical);
+
         bool selectionChanged = false;
 
         if (vertical < 0 && Mathf.Abs(vertical) >= inputLag)
@@ -102,14 +104,15 @@ public class MenuController : MonoBehaviour {
             Debug.Log("Selection changed");
 
             if( arrowIcon )
-                arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, menuOffset - (menuSpacing * selectedMenuOption));
+                arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, 
+                                                           menuOffset - (menuSpacing * selectedMenuOption));
             inputLagRemaining = inputLag;
             eventSystem.SetSelectedGameObject(menuOptions[selectedMenuOption]);
         }
     }
 
     void HandleMenuEnterInput() {
-        bool enter = inputManager.Fire();
+        bool enter = inputManager.Enter();
         if( enter ) {
             Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
             button.OnSubmit(null);

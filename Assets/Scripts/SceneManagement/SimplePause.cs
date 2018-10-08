@@ -22,13 +22,13 @@ public class SimplePause : MonoBehaviour
             if (SimplePause.isPaused)
             {
                 SimplePause.isPaused = false;
-                Time.timeScale = 1F;
+              //  Time.timeScale = 1F;
                 SceneManager.UnloadSceneAsync(this.pauseScene);
             }
             else
             {
                 SimplePause.isPaused = true;
-                Time.timeScale = 0F;
+               // Time.timeScale = 0F;
                 SceneManager.LoadScene(this.pauseScene, LoadSceneMode.Additive);
             }
         }

@@ -30,6 +30,8 @@ public class Bullet : MonoBehaviour {
 
     void Update()
     {
+        if (Navigation.IsPaused()) return;
+
         this.killAfter -= Time.deltaTime;
         if(this.killAfter < 0f)
         {

@@ -8,6 +8,7 @@ public class PlayerInputManager : ScriptableObject {
     private KeyCode jumpKey;
     private KeyCode pauseKey;
     private KeyCode cancelKey;
+    private KeyCode enterKey;
 
     public void Initialize(int playerNum)
     {
@@ -30,6 +31,7 @@ public class PlayerInputManager : ScriptableObject {
                     fireKey = KeyCode.Joystick1Button1;
                     pauseKey = KeyCode.Joystick1Button9;
                     cancelKey = KeyCode.Joystick1Button2;
+                    enterKey = KeyCode.JoystickButton1;
                     break;
                 }
             case 1:
@@ -38,6 +40,7 @@ public class PlayerInputManager : ScriptableObject {
                     fireKey = KeyCode.Joystick2Button1;
                     cancelKey = KeyCode.Joystick2Button2;
                     pauseKey = KeyCode.Joystick2Button9;
+                    enterKey = KeyCode.Joystick2Button1;
                     break;
                 }
             default:
@@ -58,6 +61,7 @@ public class PlayerInputManager : ScriptableObject {
                     fireKey = KeyCode.LeftCommand;
                     pauseKey = KeyCode.P;
                     cancelKey = KeyCode.Escape;
+                    enterKey = KeyCode.Return;
                     break;
                 }
             case 1:
@@ -66,6 +70,7 @@ public class PlayerInputManager : ScriptableObject {
                     fireKey = KeyCode.RightShift;
                     pauseKey = KeyCode.RightBracket;
                     cancelKey = KeyCode.LeftBracket;
+                    enterKey = KeyCode.Backslash;
                     break;
                 }
             default:
@@ -94,6 +99,11 @@ public class PlayerInputManager : ScriptableObject {
     public bool Pause()
     {
         return Input.GetKeyDown(pauseKey);
+    }
+
+    public bool Enter()
+    {
+        return Input.GetKeyDown(enterKey);
     }
 
     // @TODO Temporary, each use could probably be refactored 

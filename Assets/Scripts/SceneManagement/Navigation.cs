@@ -89,14 +89,14 @@ public class Navigation : MonoBehaviour
     public void PauseGame()
     {
         Navigation.isPaused = true;
-        Time.timeScale = 0F;
+        //Time.timeScale = 0F;
         SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
     }
 
     public void UnpauseGame() 
     {
         Navigation.isPaused = false;
-        Time.timeScale = 1F;
+        //Time.timeScale = 1F;
     }
 
     public void ResumeGame()

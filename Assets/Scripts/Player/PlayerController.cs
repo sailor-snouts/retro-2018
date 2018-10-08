@@ -69,6 +69,7 @@ public class PlayerController : PhysicsEntity
 
     protected void Update()
     {
+        if (Navigation.IsPaused()) return;
         if (!this.isAlive) return;
 
         this.velocity.x = Input.GetAxis("Horizontal_" + controlAxis);
