@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 810092136198dec438f8a8792b430366
+guid: ab29a15a0688fbf4c95068c1a172fba8
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Paladin_Attack(60x30)(fps12)_0
-    21300002: Paladin_Attack(60x30)(fps12)_1
-    21300004: Paladin_Attack(60x30)(fps12)_2
-    21300006: Paladin_Attack(60x30)(fps12)_3
-    21300008: Paladin_Attack(60x30)(fps12)_4
-    21300010: Paladin_Attack(60x30)(fps12)_5
+    21300000: paladinattack(76x30)_0
+    21300002: paladinattack(76x30)_1
+    21300004: paladinattack(76x30)_2
+    21300006: paladinattack(76x30)_3
+    21300008: paladinattack(76x30)_4
+    21300010: paladinattack(76x30)_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -97,136 +97,125 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Paladin_Attack(60x30)(fps12)_0
+      name: paladinattack(76x30)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9ca0a168f4b04442b0c0d71c207d5bf
+      spriteID: c3dbe48733088f141bd5d372edcc0e06
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Attack(60x30)(fps12)_1
+      name: paladinattack(76x30)_1
       rect:
         serializedVersion: 2
-        x: 60
+        x: 76
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad7940058102a55498c07aca3939c9ba
+      spriteID: d98201bf3ba5b134e9d7ad58ee0a376e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Attack(60x30)(fps12)_2
+      name: paladinattack(76x30)_2
       rect:
         serializedVersion: 2
-        x: 120
+        x: 152
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b39d05b687ce04a4fbe58b0d658efec7
+      spriteID: f30c6f983e36a2f4ebc2105d8c48f8e0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Attack(60x30)(fps12)_3
+      name: paladinattack(76x30)_3
       rect:
         serializedVersion: 2
-        x: 180
+        x: 228
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d70e75cbf823d6a42a3493ad4db0f03e
+      spriteID: 9e0eaf04ed2bde94e9fbb1da8b25afbe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Attack(60x30)(fps12)_4
+      name: paladinattack(76x30)_4
       rect:
         serializedVersion: 2
-        x: 240
+        x: 304
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2486f853494fa934a89594738727dc0a
+      spriteID: 8b2a32d5ef5dd57458681c554c583725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Attack(60x30)(fps12)_5
+      name: paladinattack(76x30)_5
       rect:
         serializedVersion: 2
-        x: 300
+        x: 380
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 096989b327d3de54e93ea1cc4181ff8a
+      spriteID: c4da18a4229c9ae4591f297842622148
       vertices: []
       indices: 
       edges: []
@@ -234,7 +223,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0d248c6f9583efd4389be607f4138b38
+    spriteID: bd2e91f67bc8b924eb0b2194d1118abf
     vertices: []
     indices: 
     edges: []

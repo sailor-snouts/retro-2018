@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: edd3e54d03ead084b9b3009178e8b89c
+guid: 1e59368e5767be640b72b148cb29ff17
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Paladin_Jump(60x30)(12fps)_0
-    21300002: Paladin_Jump(60x30)(12fps)_1
-    21300004: Paladin_Jump(60x30)(12fps)_2
-    21300006: Paladin_Jump(60x30)(12fps)_3
+    21300000: paladinshield(76x30)_0
+    21300002: paladinshield(76x30)_1
+    21300004: paladinshield(76x30)_2
+    21300006: paladinshield(76x30)_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -35,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -95,96 +95,85 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Paladin_Jump(60x30)(12fps)_0
+      name: paladinshield(76x30)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d157cec45d70ab4e8b2c9ae8688f186
+      spriteID: 92a650c3010a2a4479427c76de255542
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Jump(60x30)(12fps)_1
+      name: paladinshield(76x30)_1
       rect:
         serializedVersion: 2
-        x: 60
+        x: 76
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b214484a4138f448be769734b27aa0d
+      spriteID: 8b9204f198b50df4ca1def42eb5c5604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Jump(60x30)(12fps)_2
+      name: paladinshield(76x30)_2
       rect:
         serializedVersion: 2
-        x: 120
+        x: 152
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21e8a2d40dfc97b478f1ecfb068f15ac
+      spriteID: a2c7f975daac3024198b243c427e9ef0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paladin_Jump(60x30)(12fps)_3
+      name: paladinshield(76x30)_3
       rect:
         serializedVersion: 2
-        x: 180
+        x: 228
         y: 0
-        width: 60
+        width: 76
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80fbb656d688c1d478521c54c653ddc5
+      spriteID: b21f23efde983c543a36d494beccbd57
       vertices: []
       indices: 
       edges: []
@@ -192,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: bd5b812ea0d6f714e8e3d547da7fa741
+    spriteID: db3ed670dfea6de45b8c62b8d89603ec
     vertices: []
     indices: 
     edges: []
