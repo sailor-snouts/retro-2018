@@ -302,10 +302,11 @@ MonoBehaviour:
   health: {fileID: 0}
   isAlive: 1
   maxSpeed: 7
-  jumpHeight: 4
+  jumpHeight: 4.5
   jumpApexTime: 0.3
   jumpRelease: 0.5
   axisName: PlayerOne
+  inputManager: {fileID: 0}
 --- !u!212 &212491302451889020
 SpriteRenderer:
   m_ObjectHideFlags: 1
