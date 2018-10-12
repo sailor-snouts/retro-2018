@@ -28,12 +28,7 @@ public class MenuController : MonoBehaviour {
 
     int selectedMenuOption;
 
-    PlayerInputManager inputManager;
-
     void Start () {
-
-        inputManager = ScriptableObject.CreateInstance<PlayerInputManager>();
-        inputManager.Initialize(0);
 
         eventSystem.SetSelectedGameObject(menuOptions[0]);
 
@@ -70,9 +65,8 @@ public class MenuController : MonoBehaviour {
             return;
         }
 
-        float vertical = inputManager.GetAxis("Vertical_" + controlAxis);
         bool selectionChanged = false;
-
+        float vertical = 0;
         if (vertical < 0 && Mathf.Abs(vertical) >= inputLag)
         {
             Debug.Log("Input 'down' detected: " + vertical);
@@ -109,7 +103,7 @@ public class MenuController : MonoBehaviour {
     }
 
     void HandleMenuEnterInput() {
-        bool enter = inputManager.Fire();
+        bool enter = false;
         if( enter ) {
             Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
             button.OnSubmit(null);

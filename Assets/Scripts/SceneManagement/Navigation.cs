@@ -22,10 +22,10 @@ public class Navigation : MonoBehaviour
         bool canPause = (SceneManager.GetActiveScene().name != "PlayerSelect")
             && (SceneManager.GetActiveScene().name != "Title");
 
-        if (canPause && Input.GetAxisRaw("Pause") > 0)
-        {
-            PauseGame();
-        }
+        //if (canPause && Input.GetAxisRaw("Pause") > 0)
+        //{
+        //    PauseGame();
+        //}
     }
     #endregion
 

@@ -43,11 +43,6 @@ public class PlayerTypeSelectController : MonoBehaviour
         // Optimization: cache for text flashing performance
         pressStartText = pressStartPanel.GetComponentsInChildren<Text>();
 
-
-        inputManager = ScriptableObject.CreateInstance<PlayerInputManager>();
-        inputManager.Initialize((axisName == "PlayerOne") ? 0 : 1);
-
-
         if (Input.GetJoystickNames().Length == 0)
         {
             controlAxis = axisName + "_Keyboard";
@@ -71,19 +66,6 @@ public class PlayerTypeSelectController : MonoBehaviour
 
     void Update()
     {
-        if (!hasJoined)
-        {
-            FlashPlayerTwoMessage(Time.deltaTime);
-
-            if( inputManager.Pause() ) {
-                AddPlayer();
-            }
-        } else {
-            if ( inputManager.Cancel() )
-            {
-                DropPlayer();
-            }
-        }
 
         HandlePlayerSelectInput();
     }

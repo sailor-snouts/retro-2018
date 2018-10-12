@@ -2,108 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputManager : ScriptableObject {
+public class PlayerInputManager : MonoBehaviour {
+    enum States { GAME, PAUSE, SELECT, OPTION };
+    private States state = States.GAME;
+    private PlayerController player1;
+    private PlayerController player2;
 
     private KeyCode fireKey;
     private KeyCode jumpKey;
     private KeyCode pauseKey;
     private KeyCode cancelKey;
 
-    public void Initialize(int playerNum)
+    public void Awake()
     {
-        if (Input.GetJoystickNames().Length > playerNum)
+        foreach(PlayerController player in FindObjectsOfType<PlayerController>())
         {
-            InitializeController(playerNum);
-        }
-        else
-        {
-            InitializeKeyboard(playerNum);
-        }
-    }
-
-    private void InitializeController(int playerNum) {
-        switch (playerNum)
-        {
-            case 0:
-                {
-                    jumpKey = KeyCode.Joystick1Button0;
-                    fireKey = KeyCode.Joystick1Button1;
-                    pauseKey = KeyCode.Joystick1Button9;
-                    cancelKey = KeyCode.Joystick1Button2;
-                    break;
-                }
-            case 1:
-                {
-                    jumpKey = KeyCode.Joystick2Button0;
-                    fireKey = KeyCode.Joystick2Button1;
-                    cancelKey = KeyCode.Joystick2Button2;
-                    pauseKey = KeyCode.Joystick2Button9;
-                    break;
-                }
-            default:
-                {
-                    Debug.LogError("Unconfigured Player Num " + playerNum + " detected");
-                    break;
-                }
+            if(player.getPlayerNumber() == 1 && this.player1 == null)
+            {
+                this.player1 = player;
+                continue;
+            }
+            if(player.getPlayerNumber() == 2 && this.player2 == null)
+            {
+                this.player2 = player;
+                continue;
+            }
+            Debug.LogError("Player " + player.getPlayerNumber() + " Controller already set or undefined");
         }
     }
 
-    private void InitializeKeyboard(int playerNum)
+    protected void Update()
     {
-        switch (playerNum)
+        // because the player is added dynamically, awake might be called too soon and cant locate the player
+        if (this.player1 == null)
         {
-            case 0:
-                {
-                    jumpKey = KeyCode.LeftAlt;
-                    fireKey = KeyCode.LeftCommand;
-                    pauseKey = KeyCode.P;
-                    cancelKey = KeyCode.Escape;
-                    break;
-                }
-            case 1:
-                {
-                    jumpKey = KeyCode.Slash;
-                    fireKey = KeyCode.RightShift;
-                    pauseKey = KeyCode.RightBracket;
-                    cancelKey = KeyCode.LeftBracket;
-                    break;
-                }
-            default:
-                {
-                    Debug.LogError("Unconfigured Player Num " + playerNum + " detected");
-                    break;
-                }
+            this.Awake();
+        }
+
+        switch (this.state)
+        {
+            case States.GAME:
+                this.GameInput();
+                break;
         }
     }
 
-    public bool Fire()
+    protected void GameInput()
     {
-        return Input.GetKeyDown(fireKey);
-    }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        {
+            this.player1.Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        {
+            if (Input.GetAxis("Vertical_PlayerOne_Joystick") < -0.5f)
+            {
+                this.player1.Attack2();
+            }
+            else
+            {
+                this.player1.Attack1();
+            }
+        }
 
-    public bool Jump()
-    {
-        return Input.GetKeyDown(jumpKey);
-    }
-
-    public bool Cancel()
-    {
-        return Input.GetKeyDown(cancelKey);
-    }
-
-    public bool Pause()
-    {
-        return Input.GetKeyDown(pauseKey);
-    }
-
-    // @TODO Temporary, each use could probably be refactored 
-    public float GetAxis(string axisName) 
-    {
-        return Input.GetAxis(axisName);
-    }
-    public float GetAxisRaw(string axisName)
-    {
-        return Input.GetAxisRaw(axisName);
+        player1.Walk(Input.GetAxis("Horizontal_PlayerOne_Joystick"));
     }
 
 }
