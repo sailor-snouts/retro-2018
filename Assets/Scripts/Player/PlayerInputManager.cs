@@ -53,6 +53,10 @@ public class PlayerInputManager : MonoBehaviour {
         {
             this.player1.Jump();
         }
+        if(Input.GetKeyUp(KeyCode.Joystick1Button0))
+        {
+            this.player1.JumpRelease();
+        }
         if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
             if (Input.GetAxis("Vertical_PlayerOne_Joystick") < -0.5f)

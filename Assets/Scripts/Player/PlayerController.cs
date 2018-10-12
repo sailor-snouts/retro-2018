@@ -29,8 +29,8 @@ public class PlayerController : PhysicsEntity
     [SerializeField]
     protected int player = 1;
 
-    private SpriteRenderer spriteRenderer;
-    private Animator anim;
+    protected SpriteRenderer spriteRenderer;
+    protected Animator anim;
 
     void Awake()
     {
@@ -38,7 +38,7 @@ public class PlayerController : PhysicsEntity
         this.anim = GetComponent<Animator>();
     }
 
-    public void Jump()
+   virtual public void Jump()
     {
         if (this.IsGrounded())
         {
@@ -46,7 +46,7 @@ public class PlayerController : PhysicsEntity
         }
     }
 
-    public void JumpRelease()
+    virtual public void JumpRelease()
     {
         if (this.velocity.y > 0)
         {
@@ -54,30 +54,27 @@ public class PlayerController : PhysicsEntity
         }
     }
 
-    public void Attack1()
+    virtual public void Attack1()
     {
-        Vector2 fireDirection = new Vector2(transform.localScale.x, 0f);
-        GetComponentInChildren<BulletGenerator>().Fire(fireDirection);
         this.anim.SetBool("IsShooting", true);
     }
 
-    public void FinishAttak1()
+    virtual public void FinishAttak1()
     {
         this.anim.SetBool("IsShooting", false);
     }
 
-    public void Attack2()
+    virtual public void Attack2()
     {
-        GetComponentInChildren<BombLauncher>().Fire(new Vector2(transform.localScale.x, 3f));
         this.anim.SetBool("IsThrowing", true);
     }
 
-    public void FinishAttak2()
+    virtual public void FinishAttak2()
     {
         this.anim.SetBool("IsThrowing", false);
     }
 
-    public void Walk(float direction)
+    virtual public void Walk(float direction)
     {
         this.velocity.x = Mathf.Clamp(direction, -1f, 1f);
     }
