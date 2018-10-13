@@ -35,9 +35,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4207220987322804}
+  - component: {fileID: 114179717466479696}
   - component: {fileID: 212491302451889020}
   - component: {fileID: 50488779433126654}
-  - component: {fileID: 114639406673007098}
   - component: {fileID: 61033901107275474}
   - component: {fileID: 82030260998783082}
   - component: {fileID: 95870530028612360}
@@ -275,6 +275,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 1286763830981102, guid: 4c7b13c837a1fc246834d2a93507cb64, type: 2}
+--- !u!114 &114179717466479696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1435629157624562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fac61888738824a8809ede9049873e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  health: {fileID: 0}
+  isAlive: 1
+  maxSpeed: 7
+  jumpHeight: 5
+  jumpApexTime: 0.3
+  jumpRelease: 0.5
+  jumpVelocity: 0
+  player: 1
 --- !u!114 &114315746612506044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,26 +307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1525157069991382, guid: 0e1da1f1a36ec634f929519fc0e4e08c, type: 2}
---- !u!114 &114639406673007098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1435629157624562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63001d558b369c34a853a7c693206416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  health: {fileID: 0}
-  isAlive: 1
-  maxSpeed: 7
-  jumpHeight: 4.5
-  jumpApexTime: 0.3
-  jumpRelease: 0.5
-  axisName: PlayerOne
-  inputManager: {fileID: 0}
 --- !u!212 &212491302451889020
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -35,9 +35,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4887528947294984}
+  - component: {fileID: 114733489258400164}
   - component: {fileID: 212275316501273724}
   - component: {fileID: 50925816179136530}
-  - component: {fileID: 114808975796974272}
   - component: {fileID: 61096904809812046}
   - component: {fileID: 82538309408872038}
   - component: {fileID: 95991727931539662}
@@ -141,7 +141,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 2}
+    oldSize: {x: 5.0666666, y: 2}
     newSize: {x: 6, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -275,6 +275,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 1286763830981102, guid: 4c7b13c837a1fc246834d2a93507cb64, type: 2}
+--- !u!114 &114733489258400164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409229946987960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd045e76485ab741a589e5d0b6b1ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  health: {fileID: 0}
+  isAlive: 1
+  maxSpeed: 7
+  jumpHeight: 5
+  jumpApexTime: 0.5
+  jumpRelease: 0.5
+  jumpVelocity: 0
+  player: 1
 --- !u!114 &114786603250801288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,26 +307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1525157069991382, guid: 0e1da1f1a36ec634f929519fc0e4e08c, type: 2}
---- !u!114 &114808975796974272
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409229946987960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63001d558b369c34a853a7c693206416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  health: {fileID: 0}
-  isAlive: 1
-  maxSpeed: 7
-  jumpHeight: 4.5
-  jumpApexTime: 0.3
-  jumpRelease: 0.5
-  axisName: PlayerOne
-  inputManager: {fileID: 0}
 --- !u!212 &212275316501273724
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -342,7 +342,7 @@ SpriteRenderer:
   m_SortingLayerID: -1843818987
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: 806d4922a8bd01a48a335782a840a398, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e231b6ec25ab5eb4daed4a85821a7eca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
