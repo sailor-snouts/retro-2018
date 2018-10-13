@@ -17,8 +17,6 @@ public class MenuController : MonoBehaviour {
     GameObject[] menuOptions = null;
     [SerializeField]
     EventSystem eventSystem = null;
-    [SerializeField]
-    float inputLag = 0.3f;
 
     [SerializeField]
     string axisName = "PlayerOne";
@@ -33,9 +31,8 @@ public class MenuController : MonoBehaviour {
     public void ChangeSelection(float vertical)
     {
         bool selectionChanged = false;
-        if (vertical < 0 && Mathf.Abs(vertical) >= inputLag)
+        if (vertical < 0)
         {
-            Debug.Log("Input 'down' detected: " + vertical);
 
             // select character color Down Arrow
             selectedMenuOption++;
@@ -45,10 +42,8 @@ public class MenuController : MonoBehaviour {
             selectionChanged = true;
         }
 
-        if (vertical > 0 && (vertical >= inputLag))
+        if (vertical > 0)
         {
-            Debug.Log("Input 'up' detected: " + vertical);
-
             // select character color Up Arrow
             selectedMenuOption--;
             if (selectedMenuOption < 0)

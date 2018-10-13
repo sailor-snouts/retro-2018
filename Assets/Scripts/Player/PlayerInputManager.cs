@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInputManager : MonoBehaviour {
-    enum States { GAME, PAUSE, SELECT, OPTION };
+    public static PlayerInputManager instance = null;
+    public enum States { GAME, PAUSE, LOADING, SELECT, MENU, SPLASH };
     [SerializeField]
     private States state = States.GAME;
 
@@ -15,16 +17,28 @@ public class PlayerInputManager : MonoBehaviour {
     private Navigation navigation;
     private MenuController menu;
 
-    public void Awake()
+    public void Start()
     {
-        foreach(PlayerController player in FindObjectsOfType<PlayerController>())
+
+        if (PlayerInputManager.instance == null)
         {
-            if(player.getPlayerNumber() == 1 && this.player1 == null)
+            PlayerInputManager.instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Debug.Log("destroying");
+            Destroy(gameObject);
+        }
+
+        foreach (PlayerController player in FindObjectsOfType<PlayerController>())
+        {
+            if (player.getPlayerNumber() == 1 && this.player1 == null)
             {
                 this.player1 = player;
                 continue;
             }
-            if(player.getPlayerNumber() == 2 && this.player2 == null)
+            if (player.getPlayerNumber() == 2 && this.player2 == null)
             {
                 this.player2 = player;
                 continue;
@@ -32,18 +46,18 @@ public class PlayerInputManager : MonoBehaviour {
 
             Debug.LogError("Player " + player.getPlayerNumber() + " Controller already set or undefined");
         }
+
         this.navigation = FindObjectOfType<Navigation>();
+        SceneManager.sceneLoaded += SceneLoaded;
     }
 
     protected void Update()
     {
-        // because the player is added dynamically, awake might be called too soon and cant locate the player
-        if (this.player1 == null)
+        if(this.state == States.SPLASH)
         {
-            this.Awake();
+            this.SplashInput();
         }
-        
-        if (this.state == States.PAUSE)
+        else if (this.state == States.PAUSE)
         {
             this.PauseInput();
             this.MenuInput();
@@ -52,6 +66,35 @@ public class PlayerInputManager : MonoBehaviour {
         {
             this.GameInput();
             this.PauseInput();
+        }
+    }
+
+    public void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch(scene.name)
+        {
+            case "Scenes/Splash":
+            case "Scenes/Title":
+            case "Scenes/OpeningCrawl":
+            case "Scenes/Win":
+            case "Scenes/Lose":
+                this.state = States.SPLASH;
+                break;
+            case "Scenes/Loading":
+                this.state = States.LOADING;
+                break;
+            case "Scenes/Pause":
+                this.state = States.PAUSE;
+                break;
+            case "Scenes/Sandbox-robert":
+                this.state = States.GAME;
+                break;
+            case "Scenes/Options":
+                this.state = States.MENU;
+                break;
+            case "Scenes/PlayerSelect":
+                this.state = States.SELECT;
+                break;
         }
     }
 
@@ -152,6 +195,15 @@ public class PlayerInputManager : MonoBehaviour {
             }
         }
         player2.Walk(Input.GetAxis("Horizontal_PlayerTwo_Joystick"));
+    }
+
+    protected void SplashInput()
+    {
+        if(Input.anyKeyDown)
+        {
+            SimpleSceneTransition transition = FindObjectOfType<SimpleSceneTransition>();
+            transition.Change();
+        }
     }
 
 }
