@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerHealth))]
 public class PlayerController : PhysicsEntity
 {
     public PlayerHealth health;
@@ -48,7 +49,7 @@ public class PlayerController : PhysicsEntity
 
     virtual public void JumpRelease()
     {
-        if (this.velocity.y > 0)
+        if (this.velocity.y > 0f)
         {
             this.velocity.y = this.velocity.y * this.jumpRelease;
         }
@@ -136,6 +137,13 @@ public class PlayerController : PhysicsEntity
     public PlayerController SetPlayerNumber(int number)
     {
         this.player = number;
+        foreach(PlayerHealth ph in FindObjectsOfType<PlayerHealth>())
+        {
+            if(this.getPlayerNumber() == ph.getPlayerNumber())
+            {
+                this.health = ph;
+            }
+        }
 
         return this;
     }

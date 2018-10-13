@@ -5,11 +5,7 @@ using UnityEngine.SceneManagement;
 public class Navigation : MonoBehaviour
 {
     [SerializeField]
-    private static bool isPaused = false;
-    public static bool IsPaused()
-    {
-        return Navigation.isPaused;
-    }
+    public static bool isPaused = false;
 
     #region Handle Input
     void Update()
@@ -18,24 +14,12 @@ public class Navigation : MonoBehaviour
         {
             return;
         }
-
-        bool canPause = (SceneManager.GetActiveScene().name != "PlayerSelect")
-            && (SceneManager.GetActiveScene().name != "Title");
-
-        //if (canPause && Input.GetAxisRaw("Pause") > 0)
-        //{
-        //    PauseGame();
-        //}
     }
     #endregion
 
     #region New Scenes
     public void Title()
     {
-        if(isPaused) {
-            UnpauseGame();
-        }
-
         SceneManager.LoadScene("Title");
     }
 
@@ -88,6 +72,7 @@ public class Navigation : MonoBehaviour
     #region Modals
     public void PauseGame()
     {
+<<<<<<< HEAD
         Navigation.isPaused = true;
         //Time.timeScale = 0F;
         SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
@@ -103,6 +88,20 @@ public class Navigation : MonoBehaviour
     {
         UnpauseGame();
         GoBack("Pause");
+=======
+        if (Navigation.isPaused)
+        {
+            Navigation.isPaused = false;
+            Time.timeScale = 1F;
+            SceneManager.UnloadSceneAsync("Pause");
+        }
+        else
+        {
+            Navigation.isPaused = true;
+            Time.timeScale = 0F;
+            SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
+        }
+>>>>>>> 014c752cf2cbd75c3b7373c9d70f0ff9787cefc0
     }
 
     public void GoBack(string sceneName)

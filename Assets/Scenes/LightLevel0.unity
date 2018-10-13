@@ -477,8 +477,6 @@ MonoBehaviour:
   - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
   playerOneActive: 1
   playerTwoActive: 0
-  jumpHeight: 10
-  jumpApexTime: 0.5
 --- !u!4 &742245386
 Transform:
   m_ObjectHideFlags: 0

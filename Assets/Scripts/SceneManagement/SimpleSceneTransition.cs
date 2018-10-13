@@ -10,8 +10,6 @@ public class SimpleSceneTransition : MonoBehaviour
     [SerializeField]
     private bool async = true;
     [SerializeField]
-    private bool onAnyKey = true;
-    [SerializeField]
     private bool timed = false;
     [SerializeField]
     private float lifetime = 10.0f;
@@ -20,14 +18,6 @@ public class SimpleSceneTransition : MonoBehaviour
     {
         if( timed ) {
             Invoke("Change", lifetime);
-        }
-    }
-
-    private void Update()
-    {
-        if(this.onAnyKey && Input.anyKeyDown)
-        {
-            this.Change();
         }
     }
 

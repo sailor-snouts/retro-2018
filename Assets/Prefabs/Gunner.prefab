@@ -35,6 +35,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4207220987322804}
+  - component: {fileID: 114467865811281710}
   - component: {fileID: 114179717466479696}
   - component: {fileID: 212491302451889020}
   - component: {fileID: 50488779433126654}
@@ -307,6 +308,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1525157069991382, guid: 0e1da1f1a36ec634f929519fc0e4e08c, type: 2}
+--- !u!114 &114467865811281710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1435629157624562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2cec3f7555c4aa48a1cbb861344aed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 100
+  previousHealth: 100
+  player: 1
 --- !u!212 &212491302451889020
 SpriteRenderer:
   m_ObjectHideFlags: 1
