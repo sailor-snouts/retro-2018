@@ -27,35 +27,13 @@ public class MenuController : MonoBehaviour {
     PlayerInputManager inputManager;
 
     void Start () {
-<<<<<<< HEAD
-
-        inputManager = ScriptableObject.CreateInstance<PlayerInputManager>();
-        inputManager.Initialize(0);
-
-=======
->>>>>>> 014c752cf2cbd75c3b7373c9d70f0ff9787cefc0
         eventSystem.SetSelectedGameObject(menuOptions[0]);
     }
 
     public void ChangeSelection(float vertical)
     {
-<<<<<<< HEAD
-        if (inputLagRemaining >= Mathf.Epsilon)
-        {
-            inputLagRemaining -= Time.deltaTime;
-            return;
-        }
-
-        float vertical = inputManager.GetAxis("Vertical_" + controlAxis);
-        Debug.Log("Input detected? " + vertical);
-
-        bool selectionChanged = false;
-
-        if (vertical < 0 && Mathf.Abs(vertical) >= inputLag)
-=======
         bool selectionChanged = false;
         if (vertical < 0)
->>>>>>> 014c752cf2cbd75c3b7373c9d70f0ff9787cefc0
         {
 
             // select character color Down Arrow
@@ -81,28 +59,13 @@ public class MenuController : MonoBehaviour {
             Debug.Log("Selection changed");
 
             if( arrowIcon )
-<<<<<<< HEAD
-                arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, 
-                                                           menuOffset - (menuSpacing * selectedMenuOption));
-            inputLagRemaining = inputLag;
-=======
                 arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, menuOffset - (menuSpacing * selectedMenuOption));
->>>>>>> 014c752cf2cbd75c3b7373c9d70f0ff9787cefc0
             eventSystem.SetSelectedGameObject(menuOptions[selectedMenuOption]);
         }
     }
 
-<<<<<<< HEAD
-    void HandleMenuEnterInput() {
-        bool enter = inputManager.Enter();
-        if( enter ) {
-            Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
-            button.OnSubmit(null);
-        }
-=======
     public void SelectOption() {
         Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
         button.OnSubmit(null);
->>>>>>> 014c752cf2cbd75c3b7373c9d70f0ff9787cefc0
     }
 }

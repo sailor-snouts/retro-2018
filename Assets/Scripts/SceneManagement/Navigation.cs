@@ -72,23 +72,6 @@ public class Navigation : MonoBehaviour
     #region Modals
     public void PauseGame()
     {
-<<<<<<< HEAD
-        Navigation.isPaused = true;
-        //Time.timeScale = 0F;
-        SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
-    }
-
-    public void UnpauseGame() 
-    {
-        Navigation.isPaused = false;
-        //Time.timeScale = 1F;
-    }
-
-    public void ResumeGame()
-    {
-        UnpauseGame();
-        GoBack("Pause");
-=======
         if (Navigation.isPaused)
         {
             Navigation.isPaused = false;
@@ -101,7 +84,6 @@ public class Navigation : MonoBehaviour
             Time.timeScale = 0F;
             SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
         }
->>>>>>> 014c752cf2cbd75c3b7373c9d70f0ff9787cefc0
     }
 
     public void GoBack(string sceneName)

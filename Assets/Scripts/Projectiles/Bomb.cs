@@ -34,8 +34,6 @@ public class Bomb : Bullet {
 
     private void FixedUpdate()
     {
-        if (Navigation.IsPaused()) return;
-
         this.delay -= Time.fixedDeltaTime;
         if(this.delay < 0f)
         {

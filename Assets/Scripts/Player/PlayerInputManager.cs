@@ -1,119 +1,210 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerInputManager : ScriptableObject {
+public class PlayerInputManager : MonoBehaviour
+{
+    public static PlayerInputManager instance = null;
+    public enum States { GAME, PAUSE, LOADING, SELECT, MENU, SPLASH };
+    [SerializeField]
+    private States state = States.GAME;
 
-    private KeyCode fireKey;
-    private KeyCode jumpKey;
-    private KeyCode pauseKey;
-    private KeyCode cancelKey;
-    private KeyCode enterKey;
+    private float menuSelectionLag = 0.2f;
+    private float menuSelectionLagCounter = 0f;
 
-    public void Initialize(int playerNum)
+    private PlayerController player1;
+    private PlayerController player2;
+    private Navigation navigation;
+    private MenuController menu;
+
+    public void Start()
     {
-        if (Input.GetJoystickNames().Length > playerNum)
+
+        if (PlayerInputManager.instance == null)
         {
-            InitializeController(playerNum);
+            PlayerInputManager.instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            InitializeKeyboard(playerNum);
+            Debug.Log("destroying");
+            Destroy(gameObject);
         }
-    }
 
-    private void InitializeController(int playerNum) {
-        switch (playerNum)
+        foreach (PlayerController player in FindObjectsOfType<PlayerController>())
         {
-            case 0:
-                {
-                    jumpKey = KeyCode.Joystick1Button0;
-                    fireKey = KeyCode.Joystick1Button1;
-                    pauseKey = KeyCode.Joystick1Button9;
-                    cancelKey = KeyCode.Joystick1Button2;
-                    enterKey = KeyCode.JoystickButton1;
-                    break;
-                }
-            case 1:
-                {
-                    jumpKey = KeyCode.Joystick2Button0;
-                    fireKey = KeyCode.Joystick2Button1;
-                    cancelKey = KeyCode.Joystick2Button2;
-                    pauseKey = KeyCode.Joystick2Button9;
-                    enterKey = KeyCode.Joystick2Button1;
-                    break;
-                }
-            default:
-                {
-                    Debug.LogError("Unconfigured Player Num " + playerNum + " detected");
-                    break;
-                }
+            if (player.getPlayerNumber() == 1 && this.player1 == null)
+            {
+                this.player1 = player;
+                continue;
+            }
+            if (player.getPlayerNumber() == 2 && this.player2 == null)
+            {
+                this.player2 = player;
+                continue;
+            }
+
+            Debug.LogError("Player " + player.getPlayerNumber() + " Controller already set or undefined");
         }
+
+        this.navigation = FindObjectOfType<Navigation>();
+        SceneManager.sceneLoaded += SceneLoaded;
     }
 
-    private void InitializeKeyboard(int playerNum)
+    protected void Update()
     {
-        switch (playerNum)
+        if (this.state == States.SPLASH)
         {
-            case 0:
-                {
-                    jumpKey = KeyCode.LeftAlt;
-                    fireKey = KeyCode.LeftCommand;
-                    pauseKey = KeyCode.P;
-                    cancelKey = KeyCode.Escape;
-                    enterKey = KeyCode.Return;
-                    break;
-                }
-            case 1:
-                {
-                    jumpKey = KeyCode.Slash;
-                    fireKey = KeyCode.RightShift;
-                    pauseKey = KeyCode.RightBracket;
-                    cancelKey = KeyCode.LeftBracket;
-                    enterKey = KeyCode.Backslash;
-                    break;
-                }
-            default:
-                {
-                    Debug.LogError("Unconfigured Player Num " + playerNum + " detected");
-                    break;
-                }
+            this.SplashInput();
+        }
+        else if (this.state == States.PAUSE)
+        {
+            this.PauseInput();
+            this.MenuInput();
+        }
+        else if (this.state == States.GAME)
+        {
+            this.GameInput();
+            this.PauseInput();
         }
     }
 
-    public bool Fire()
+    public void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        return Input.GetKeyDown(fireKey);
+        switch (scene.name)
+        {
+            case "Scenes/Splash":
+            case "Scenes/Title":
+            case "Scenes/OpeningCrawl":
+            case "Scenes/Win":
+            case "Scenes/Lose":
+                this.state = States.SPLASH;
+                break;
+            case "Scenes/Loading":
+                this.state = States.LOADING;
+                break;
+            case "Scenes/Pause":
+                this.state = States.PAUSE;
+                break;
+            case "Scenes/Sandbox-robert":
+                this.state = States.GAME;
+                break;
+            case "Scenes/Options":
+                this.state = States.MENU;
+                break;
+            case "Scenes/PlayerSelect":
+                this.state = States.SELECT;
+                break;
+        }
     }
 
-    public bool Jump()
-    {
-        return Input.GetKeyDown(jumpKey);
+    protected void PauseInput()
+    { 
+        if (Input.GetKeyDown(KeyCode.JoystickButton7))
+        {
+            this.navigation.PauseGame();
+            if (Navigation.isPaused)
+            {
+                this.state = States.PAUSE;
+            }
+            else
+            {
+                this.state = States.GAME;
+                this.menu = null;
+            }
+        }
     }
 
-    public bool Cancel()
+    protected void MenuInput()
     {
-        return Input.GetKeyDown(cancelKey);
+        if (this.menu == null)
+        {
+            this.menu = FindObjectOfType<MenuController>();
+        }
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton1))
+        {
+            menu.SelectOption();
+        }
+
+        this.menuSelectionLagCounter = Mathf.Clamp(this.menuSelectionLagCounter - Time.fixedUnscaledDeltaTime, 0, 5f);
+
+        if (this.menuSelectionLagCounter > 0)
+        {
+            return;
+        }
+
+        if (Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f)
+        {
+            menu.ChangeSelection(Input.GetAxis("Vertical_PlayerOne_Joystick"));
+            this.menuSelectionLagCounter = this.menuSelectionLag;
+        }
+        else if (Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f)
+        {
+            menu.ChangeSelection(Input.GetAxis("Vertical_PlayerTwo_Joystick"));
+            this.menuSelectionLagCounter = this.menuSelectionLag;
+        }
     }
 
-    public bool Pause()
+    protected void GameInput()
     {
-        return Input.GetKeyDown(pauseKey);
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        {
+            this.player1.Jump();
+        }
+        if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+        {
+            this.player1.JumpRelease();
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        {
+            if (Input.GetAxis("Vertical_PlayerOne_Joystick") < -0.5f)
+            {
+                this.player1.Attack2();
+            }
+            else
+            {
+                this.player1.Attack1();
+            }
+        }
+        player1.Walk(Input.GetAxis("Horizontal_PlayerOne_Joystick"));
+
+
+        if (this.player2 == null)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick2Button0))
+        {
+            this.player2.Jump();
+        }
+        if (Input.GetKeyUp(KeyCode.Joystick2Button0))
+        {
+            this.player2.JumpRelease();
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick2Button1))
+        {
+            if (Input.GetAxis("Vertical_PlayerTwo_Joystick") < -0.5f)
+            {
+                this.player2.Attack2();
+            }
+            else
+            {
+                this.player2.Attack1();
+            }
+        }
+        player2.Walk(Input.GetAxis("Horizontal_PlayerTwo_Joystick"));
     }
 
-    public bool Enter()
+    protected void SplashInput()
     {
-        return Input.GetKeyDown(enterKey);
-    }
-
-    // @TODO Temporary, each use could probably be refactored 
-    public float GetAxis(string axisName) 
-    {
-        return Input.GetAxis(axisName);
-    }
-    public float GetAxisRaw(string axisName)
-    {
-        return Input.GetAxisRaw(axisName);
+        if (Input.anyKeyDown)
+        {
+            SimpleSceneTransition transition = FindObjectOfType<SimpleSceneTransition>();
+            transition.Change();
+        }
     }
 
 }

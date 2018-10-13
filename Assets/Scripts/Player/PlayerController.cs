@@ -91,7 +91,6 @@ public class PlayerController : PhysicsEntity
 
     protected void Update()
     {
-        if (Navigation.IsPaused()) return;
         if (!this.isAlive) return;
 
         base.Update();
