@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour {
     enum States { GAME, PAUSE, SELECT, OPTION };
+    [SerializeField]
     private States state = States.GAME;
+
+    private float menuSelectionLag = 0.2f;
+    private float menuSelectionLagCounter = 0f;
+
     private PlayerController player1;
     private PlayerController player2;
-
-    private KeyCode fireKey;
-    private KeyCode jumpKey;
-    private KeyCode pauseKey;
-    private KeyCode cancelKey;
+    private Navigation navigation;
+    private MenuController menu;
 
     public void Awake()
     {
@@ -27,8 +29,10 @@ public class PlayerInputManager : MonoBehaviour {
                 this.player2 = player;
                 continue;
             }
+
             Debug.LogError("Player " + player.getPlayerNumber() + " Controller already set or undefined");
         }
+        this.navigation = FindObjectOfType<Navigation>();
     }
 
     protected void Update()
@@ -38,12 +42,64 @@ public class PlayerInputManager : MonoBehaviour {
         {
             this.Awake();
         }
-
-        switch (this.state)
+        
+        if (this.state == States.PAUSE)
         {
-            case States.GAME:
-                this.GameInput();
-                break;
+            this.PauseInput();
+            this.MenuInput();
+        }
+        else if (this.state == States.GAME)
+        {
+            this.GameInput();
+            this.PauseInput();
+        }
+    }
+
+    protected void PauseInput()
+    {
+        if(Input.GetKeyDown(KeyCode.JoystickButton7))
+        {
+            this.navigation.PauseGame();
+            if(Navigation.isPaused)
+            {
+                this.state = States.PAUSE;
+            }
+            else
+            {
+                this.state = States.GAME;
+                this.menu = null;
+            }
+        }
+    }
+
+    protected void MenuInput()
+    {
+        if (this.menu == null)
+        {
+            this.menu = FindObjectOfType<MenuController>();
+        }
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton1))
+        {
+            menu.SelectOption();
+        }
+
+        this.menuSelectionLagCounter = Mathf.Clamp(this.menuSelectionLagCounter - Time.fixedUnscaledDeltaTime, 0, 5f);
+
+        if (this.menuSelectionLagCounter > 0)
+        {
+            return;
+        }
+
+        if (Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f)
+        {
+            menu.ChangeSelection(Input.GetAxis("Vertical_PlayerOne_Joystick"));
+            this.menuSelectionLagCounter = this.menuSelectionLag;
+        }
+        else if(Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f)
+        {
+            menu.ChangeSelection(Input.GetAxis("Vertical_PlayerTwo_Joystick"));
+            this.menuSelectionLagCounter = this.menuSelectionLag;
         }
     }
 
@@ -68,8 +124,34 @@ public class PlayerInputManager : MonoBehaviour {
                 this.player1.Attack1();
             }
         }
-
         player1.Walk(Input.GetAxis("Horizontal_PlayerOne_Joystick"));
+
+
+        if (this.player2 == null)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick2Button0))
+        {
+            this.player2.Jump();
+        }
+        if (Input.GetKeyUp(KeyCode.Joystick2Button0))
+        {
+            this.player2.JumpRelease();
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick2Button1))
+        {
+            if (Input.GetAxis("Vertical_PlayerTwo_Joystick") < -0.5f)
+            {
+                this.player2.Attack2();
+            }
+            else
+            {
+                this.player2.Attack1();
+            }
+        }
+        player2.Walk(Input.GetAxis("Horizontal_PlayerTwo_Joystick"));
     }
 
 }

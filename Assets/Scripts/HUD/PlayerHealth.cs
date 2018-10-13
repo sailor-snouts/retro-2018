@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth = 100;
     [SerializeField]
     private float previousHealth = 100;
+    [SerializeField]
+    protected int player = 1;
 
     public void OnEnable()
     {
@@ -46,5 +48,10 @@ public class PlayerHealth : MonoBehaviour
     public void Hurt(float amt)
     {
         this.currentHealth = Mathf.Clamp(this.currentHealth - amt, 0, this.maxHealth);
+    }
+
+    public int getPlayerNumber()
+    {
+        return this.player;
     }
 }

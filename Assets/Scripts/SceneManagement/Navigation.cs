@@ -5,11 +5,7 @@ using UnityEngine.SceneManagement;
 public class Navigation : MonoBehaviour
 {
     [SerializeField]
-    private static bool isPaused = false;
-    public static bool IsPaused()
-    {
-        return Navigation.isPaused;
-    }
+    public static bool isPaused = false;
 
     #region Handle Input
     void Update()
@@ -18,24 +14,12 @@ public class Navigation : MonoBehaviour
         {
             return;
         }
-
-        bool canPause = (SceneManager.GetActiveScene().name != "PlayerSelect")
-            && (SceneManager.GetActiveScene().name != "Title");
-
-        //if (canPause && Input.GetAxisRaw("Pause") > 0)
-        //{
-        //    PauseGame();
-        //}
     }
     #endregion
 
     #region New Scenes
     public void Title()
     {
-        if(isPaused) {
-            UnpauseGame();
-        }
-
         SceneManager.LoadScene("Title");
     }
 
@@ -88,21 +72,18 @@ public class Navigation : MonoBehaviour
     #region Modals
     public void PauseGame()
     {
-        Navigation.isPaused = true;
-        Time.timeScale = 0F;
-        SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
-    }
-
-    public void UnpauseGame() 
-    {
-        Navigation.isPaused = false;
-        Time.timeScale = 1F;
-    }
-
-    public void ResumeGame()
-    {
-        UnpauseGame();
-        GoBack("Pause");
+        if (Navigation.isPaused)
+        {
+            Navigation.isPaused = false;
+            Time.timeScale = 1F;
+            SceneManager.UnloadSceneAsync("Pause");
+        }
+        else
+        {
+            Navigation.isPaused = true;
+            Time.timeScale = 0F;
+            SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
+        }
     }
 
     public void GoBack(string sceneName)

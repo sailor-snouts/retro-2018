@@ -24,49 +24,15 @@ public class MenuController : MonoBehaviour {
     string axisName = "PlayerOne";
     private string controlAxis = "Joystick";
 
-    float inputLagRemaining = 0.0f;
-
     int selectedMenuOption;
 
     void Start () {
-
         eventSystem.SetSelectedGameObject(menuOptions[0]);
-
-
-        if (Input.GetJoystickNames().Length == 0)
-        {
-            controlAxis = axisName + "_Keyboard";
-        } else {
-            int controllerIndex = (axisName == "PlayerOne") ? 0 : 1;
-            if (Input.GetJoystickNames()[controllerIndex] != null)
-            {
-                Debug.Log("Using controller for " + axisName);
-                controlAxis = axisName + "_Joystick";
-            }
-            else
-            {
-                Debug.Log("Using keyboard for " + axisName);
-                controlAxis = axisName + "_Keyboard";
-            }
-        }
     }
 
-    // Update is called once per frame
-    void Update () {
-        HandleMenuSelectInput();
-        HandleMenuEnterInput();
-    }
-
-    void HandleMenuSelectInput()
+    public void ChangeSelection(float vertical)
     {
-        if (inputLagRemaining >= Mathf.Epsilon)
-        {
-            inputLagRemaining -= Time.deltaTime;
-            return;
-        }
-
         bool selectionChanged = false;
-        float vertical = 0;
         if (vertical < 0 && Mathf.Abs(vertical) >= inputLag)
         {
             Debug.Log("Input 'down' detected: " + vertical);
@@ -97,16 +63,12 @@ public class MenuController : MonoBehaviour {
 
             if( arrowIcon )
                 arrowIcon.transform.position = new Vector3(arrowIcon.transform.position.x, menuOffset - (menuSpacing * selectedMenuOption));
-            inputLagRemaining = inputLag;
             eventSystem.SetSelectedGameObject(menuOptions[selectedMenuOption]);
         }
     }
 
-    void HandleMenuEnterInput() {
-        bool enter = false;
-        if( enter ) {
-            Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
-            button.OnSubmit(null);
-        }
+    public void SelectOption() {
+        Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
+        button.OnSubmit(null);
     }
 }
