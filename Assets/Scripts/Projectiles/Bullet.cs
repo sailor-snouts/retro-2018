@@ -42,9 +42,12 @@ public class Bullet : MonoBehaviour {
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.isFriendly && collision.gameObject.tag == "Enemy")
+        if (this.isFriendly)
         {
-            collision.gameObject.GetComponent<EnemyHealth>().Hurt(this.dmg);
+            if (collision.gameObject.tag == "Enemy")
+                collision.gameObject.GetComponent<EnemyHealth>().Hurt(this.dmg);
+            else if (collision.gameObject.tag == "BlastDoor")
+                collision.gameObject.GetComponent<BlastDoorController>().Blast(this.dmg);
             this.Hit();
         }
         else if (!this.isFriendly && collision.gameObject.tag == "Player")

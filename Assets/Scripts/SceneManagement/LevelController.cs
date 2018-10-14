@@ -39,7 +39,7 @@ public class LevelController : MonoBehaviour {
         followCam.Follow = playerTransform;
 
         PlayerInputManager inputManager = manager.GetComponent<PlayerInputManager>();
-        inputManager.Reset();
+        inputManager.Restart();
     }
 	
 	// Update is called once per frame

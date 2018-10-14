@@ -32,8 +32,6 @@ public class PlayerInputManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Reset();
-
         SceneManager.sceneLoaded += SceneLoaded;
     }
 
@@ -58,6 +56,12 @@ public class PlayerInputManager : MonoBehaviour
 
         this.navigation = FindObjectOfType<Navigation>();
 
+    }
+
+    public void Restart() 
+    {
+        this.player1 = this.player2 = null;
+        Reset();
     }
 
     protected void Update()
