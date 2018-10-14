@@ -35,7 +35,7 @@ public class Navigation : MonoBehaviour
 
     public void StartGame() 
     {
-        SceneManager.LoadScene("sandbox-robert");
+        SceneManager.LoadScene("LightLevel0");
     }
 
     public void WinGame()

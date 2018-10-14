@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - PlayerOne Spawn
   - PlayerTwo Spawn
+  - VoidCollider
   layers:
   - Default
   - TransparentFX

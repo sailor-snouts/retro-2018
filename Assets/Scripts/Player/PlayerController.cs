@@ -146,4 +146,16 @@ public class PlayerController : PhysicsEntity
 
         return this;
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("TRIGGER on object tagged: " + collision.gameObject.tag);
+        if( collision.gameObject.tag == "VoidCollider") {
+
+            // TODO: Implement properly
+            //  - player death (explosion or whatever)
+
+            GameManager.instance.PlayerDeath(this.getPlayerNumber());
+        }
+    }
 }

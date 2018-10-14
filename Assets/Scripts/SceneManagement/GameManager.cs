@@ -28,4 +28,10 @@ public class GameManager : MonoBehaviour
     internal GameObject GetPlayerTwo() {
         return playerPrefabs[1];
     }
+
+    internal void PlayerDeath(int playerNumber)
+    {
+        Navigation navigation = FindObjectOfType<Navigation>();
+        navigation.StartGame();
+    }
 }
