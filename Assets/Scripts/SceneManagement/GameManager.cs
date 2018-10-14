@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerInputManager))]
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         return playerPrefabs[1];
     }
 
+    // TODO: Implement for real
     internal void PlayerDeath(int playerNumber)
     {
         Navigation navigation = FindObjectOfType<Navigation>();

@@ -154,6 +154,7 @@ public class PlayerController : PhysicsEntity
 
             // TODO: Implement properly
             //  - player death (explosion or whatever)
+            //  - 
 
             GameManager.instance.PlayerDeath(this.getPlayerNumber());
         }

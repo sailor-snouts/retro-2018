@@ -17,6 +17,8 @@ public class LevelController : MonoBehaviour {
 
         Transform playerTransform = null;
 
+        Debug.Log("LevelController::Start");
+
         if( manager ) {
             if( manager.playerOneActive ) {
                 GameObject playerOne = Instantiate(manager.GetPlayerOne());
@@ -35,6 +37,9 @@ public class LevelController : MonoBehaviour {
 
         CinemachineVirtualCamera followCam = FindObjectOfType<CinemachineVirtualCamera>();
         followCam.Follow = playerTransform;
+
+        PlayerInputManager inputManager = manager.GetComponent<PlayerInputManager>();
+        inputManager.Reset();
     }
 	
 	// Update is called once per frame

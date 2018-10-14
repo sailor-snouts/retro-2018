@@ -32,6 +32,14 @@ public class PlayerInputManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Reset();
+
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
+    // Called on level reload
+    public void Reset()
+    {
         foreach (PlayerController player in FindObjectsOfType<PlayerController>())
         {
             if (player.getPlayerNumber() == 1 && this.player1 == null)
@@ -49,7 +57,7 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         this.navigation = FindObjectOfType<Navigation>();
-        SceneManager.sceneLoaded += SceneLoaded;
+
     }
 
     protected void Update()
@@ -88,6 +96,7 @@ public class PlayerInputManager : MonoBehaviour
                 this.state = States.PAUSE;
                 break;
             case "Scenes/Sandbox-robert":
+            case "Scenes/LightLevel0":
                 this.state = States.GAME;
                 break;
             case "Scenes/Options":
