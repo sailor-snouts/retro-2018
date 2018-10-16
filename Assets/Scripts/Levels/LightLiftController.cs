@@ -16,65 +16,60 @@ public class LightLiftController : MonoBehaviour {
     [SerializeField]
     float maxIdleTime = 3.0f;
 
-    float startPos = 0.0f;
+    float distanceTravelled = 0.0f;
     bool moving = false;
     Transform playerTransform = null;
-    float idleTime = 0.0f;
+    //float idleTime = 0.0f;
 
     bool atMaxHeight = false;
-    bool resetPosition = false;
+    //bool resetPosition = false;
 
     private void Start()
     {
-        startPos = transform.position.x;
     }
 
     void FixedUpdate () {
         if(moving) {
 
-            float distance = Mathf.Abs(transform.position.x) - startPos;
-
-            if( distance >= maxDistance ) {
+            if( distanceTravelled >= maxDistance ) {
                 moving = false;
                 atMaxHeight = true;
                 return;
             }
 
-            if (resetPosition && distance <= Mathf.Epsilon) {
-                resetPosition = false;
-                moving = false;
-                return;
-            }
-
             float moveDelta = Time.fixedDeltaTime * speed;
+            distanceTravelled += moveDelta;
             moveDelta *= up ? 1 : -1;
 
             // TODO: Clamp to PPU
             Vector3 liftVector = new Vector3(0, moveDelta, 0);
             gameObject.transform.position += liftVector;
-            playerTransform.position += liftVector;
+
+            // If a player is on the lift, nudge them so their collider doesn't get stuck!
+            if(playerTransform)
+                playerTransform.position += liftVector;
         } 
 
         if(atMaxHeight) {
-            idleTime += Time.fixedDeltaTime;
-            if( idleTime >= maxIdleTime ) {
-                up = !up;
-                idleTime = 0.0f;
-                atMaxHeight = false;
-                resetPosition = true;
-            }
+            atMaxHeight = false;
+            Debug.Log("Setting up ResetPosition call for " + maxIdleTime + "secs");
+            Invoke("ResetPosition", maxIdleTime);
         }
 
 	}
+
+    private void ResetPosition() {
+        Debug.Log("Resetting Lift Position");
+        up = !up;
+        moving = true;
+        distanceTravelled = 0.0f;
+    }
 
     // TODO: Count # players for multiplayer support
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if( collision.gameObject.tag == "Player" ){
             Debug.Log("Light Lift collision enter");
-
-            // Tracking current player transform to manage the collider positions
-            // while moving the platform during Update
             playerTransform = collision.gameObject.transform;
 
             moving = true;
@@ -86,6 +81,7 @@ public class LightLiftController : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Light Lift collision enter");
+            playerTransform = null;
             moving = false;
         }
     }
