@@ -9,13 +9,13 @@ public class PaladinController : PlayerController
 
     override public void Attack1()
     {
-        if(this.isAttack2Locked)
+        if(this.isAttack1Locked)
         {
             return;
         }
 
         this.anim.SetBool("IsShooting", true);
-        this.isAttack2Locked = true;
+        this.isAttack1Locked = true;
     }
 
     override public void FinishAttak1()
