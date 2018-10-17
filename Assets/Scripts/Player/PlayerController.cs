@@ -28,6 +28,18 @@ public class PlayerController : PhysicsEntity
     protected float jumpVelocity = 0f;
 
     [SerializeField]
+    protected Vector2 knockBackDirection = new Vector2(-1f, 2f);
+
+    [SerializeField]
+    protected float knockBackForce = 100f;
+
+    [SerializeField]
+    protected float knockBackInvincability = 0.25f;
+
+    [SerializeField]
+    protected float knockBackInvincabilityTimer = 0f;
+
+    [SerializeField]
     protected int player = 1;
 
     protected SpriteRenderer spriteRenderer;
@@ -80,6 +92,24 @@ public class PlayerController : PhysicsEntity
         this.velocity.x = Mathf.Clamp(direction, -1f, 1f);
     }
 
+    virtual public void Hurt()
+    {
+        this.anim.SetBool("IsHurt", true);
+    }
+
+    virtual public void Hurt(float dmg)
+    {
+        this.health.Hurt(dmg);
+        this.anim.SetBool("IsHurt", true);
+        this.Knockback();
+    }
+
+    virtual protected void Knockback()
+    {
+        this.knockBackInvincabilityTimer = this.knockBackInvincability;
+        this.rb2d.velocity = this.knockBackDirection.normalized * this.knockBackForce;
+    }
+
     protected void Start()
     {
         base.Start();
@@ -94,6 +124,18 @@ public class PlayerController : PhysicsEntity
         if (!this.isAlive) return;
 
         base.Update();
+
+        if (this.anim.GetBool("IsHurt"))
+        {
+            this.knockBackInvincabilityTimer -= Time.deltaTime;
+            Debug.Log("invincability!");
+            if(this.knockBackInvincabilityTimer <= 0)
+            {
+                Debug.Log("Mortality :(");
+                this.anim.SetBool("IsHurt", false);
+                this.rb2d.velocity = new Vector2(0f, 0f);
+            }
+        }
         
         this.anim.SetBool("IsRunning", Mathf.Abs(this.velocity.x) > 0.1);
         this.anim.SetBool("IsGrounded", this.IsGrounded());
@@ -102,6 +144,11 @@ public class PlayerController : PhysicsEntity
 
     protected override void ComputeVelocity()
     {
+        if(this.anim.GetBool("IsHurt"))
+        {
+            return;
+        }
+
         Vector2 move = Vector2.zero;
 
         move.x = this.velocity.x;
@@ -118,8 +165,7 @@ public class PlayerController : PhysicsEntity
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            this.health.Hurt(5f);
-            this.anim.SetBool("IsHurt", true);
+            this.Hurt(1f);
         }
     }
 
