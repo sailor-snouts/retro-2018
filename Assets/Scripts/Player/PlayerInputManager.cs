@@ -78,6 +78,11 @@ public class PlayerInputManager : MonoBehaviour
 
     protected void Update()
     {
+        if(this.state == States.GAME && this.player1 == null)
+        {
+            this.Reset();
+        }
+
         if (this.state == States.SPLASH)
         {
             this.SplashInput();
