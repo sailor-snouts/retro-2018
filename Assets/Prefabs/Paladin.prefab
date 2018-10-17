@@ -362,9 +362,11 @@ MonoBehaviour:
   jumpApexTime: 0.3
   jumpRelease: 0.5
   jumpVelocity: 0
+  knockBackDirection: {x: -1, y: 1}
+  knockBackForce: 20
+  knockBackInvincability: 0.25
+  knockBackInvincabilityTimer: 0
   player: 1
-  isAttack1Locked: 0
-  isAttack2Locked: 0
 --- !u!114 &114786603250801288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,7 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9398d2222c4b0d24ea5628fcc735d462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1525157069991382, guid: 0e1da1f1a36ec634f929519fc0e4e08c, type: 2}
+  bulletPrefab: {fileID: 0}
+  isFriendly: 1
+  damage: 1
 --- !u!114 &114897457675538772
 MonoBehaviour:
   m_ObjectHideFlags: 1

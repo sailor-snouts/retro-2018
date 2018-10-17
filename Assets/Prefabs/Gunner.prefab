@@ -295,6 +295,10 @@ MonoBehaviour:
   jumpApexTime: 0.3
   jumpRelease: 0.5
   jumpVelocity: 0
+  knockBackDirection: {x: -1, y: 2}
+  knockBackForce: 20
+  knockBackInvincability: 0.25
+  knockBackInvincabilityTimer: 0
   player: 1
 --- !u!114 &114315746612506044
 MonoBehaviour:
@@ -310,6 +314,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1525157069991382, guid: 0e1da1f1a36ec634f929519fc0e4e08c,
     type: 2}
   isFriendly: 1
+  damage: 1
 --- !u!114 &114467865811281710
 MonoBehaviour:
   m_ObjectHideFlags: 1
