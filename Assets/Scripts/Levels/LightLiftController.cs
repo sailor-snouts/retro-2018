@@ -16,7 +16,7 @@ public class LightLiftController : MonoBehaviour {
     [SerializeField]
     float maxIdleTime = 3.0f;
 
-    float distanceTravelled = 0.0f;
+    //float distanceTravelled = 0.0f;
     bool moving = false;
     Transform playerTransform = null;
     bool on = false;
@@ -39,8 +39,16 @@ public class LightLiftController : MonoBehaviour {
 
         if(moving) {
 
+            atMaxHeight = up ? transform.position.y >= maxPosition.y : transform.position.y <= maxPosition.y;
+
+            if (atMaxHeight)
+            {
+                moving = false;
+                Invoke("ResetPosition", maxIdleTime);
+                return;
+            }
+
             float moveDelta = Time.fixedDeltaTime * speed;
-            distanceTravelled += moveDelta;
             moveDelta *= up ? 1 : -1;
 
             // Clamped to PPU by speed setting
@@ -48,17 +56,11 @@ public class LightLiftController : MonoBehaviour {
             gameObject.transform.position += liftVector;
 
             // If a player is on the lift, nudge them so their collider doesn't get stuck!
-            if(playerTransform)
-                playerTransform.position += liftVector;
-
-            atMaxHeight = up ? transform.position.y >= maxPosition.y : transform.position.y <= maxPosition.y;
-
-            if (atMaxHeight)
+            if (playerTransform)
             {
-                moving = false;
-                Debug.Log("Setting up ResetPosition call for " + maxIdleTime + "secs");
-                Invoke("ResetPosition", maxIdleTime);
+                playerTransform.position += liftVector;
             }
+
         }
     }
 
@@ -67,9 +69,7 @@ public class LightLiftController : MonoBehaviour {
         up = !up;
         Vector3 maxVector = up ? new Vector3(0.0f, maxDistance) : new Vector3(0.0f, -maxDistance);
         maxPosition = transform.position + maxVector;
-        Debug.Log("New maxPosition.y = " + maxPosition.y);
         moving = true;
-        distanceTravelled = 0.0f;
     }
 
     // TODO: Count # players for multiplayer support
@@ -88,9 +88,14 @@ public class LightLiftController : MonoBehaviour {
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (playerTransform)
+        Debug.Log("Lift collider Exit!");
+        if (moving && playerTransform)
         {
-            playerTransform = null;
+            Vector3 distance = playerTransform.position - transform.position;
+            Debug.Log("Distance from lift: " + distance.magnitude);
+            // TODO: Properly calculate PPU of the moving lift.
+            if ( distance.magnitude >= 1.2f ) 
+                playerTransform = null;
         }
     }
 }
