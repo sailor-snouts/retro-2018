@@ -48,8 +48,6 @@ public class LevelController : MonoBehaviour {
             target.radius = 0.0f;
             targetGroup.m_Targets[i] = target;
         }
-        //CinemachineVirtualCamera followCam = FindObjectOfType<CinemachineVirtualCamera>();
-        //followCam.Follow = playerTransform;
 
         PlayerInputManager inputManager = manager.GetComponent<PlayerInputManager>();
         inputManager.Restart();

@@ -39,9 +39,10 @@ public class LightLiftController : MonoBehaviour {
 
             float moveDelta = Time.fixedDeltaTime * speed;
             distanceTravelled += moveDelta;
+
             moveDelta *= up ? 1 : -1;
 
-            // TODO: Clamp to PPU
+            // Clamped to PPU by speed setting
             Vector3 liftVector = new Vector3(0, moveDelta, 0);
             gameObject.transform.position += liftVector;
 

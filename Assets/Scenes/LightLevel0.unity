@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 96123214}
   - component: {fileID: 96123213}
   m_Layer: 0
-  m_Name: BlastDoor (3)
+  m_Name: BlastDoor - Boss Door
   m_TagString: BlastDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,12 +243,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 96123212}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 110.5, y: 21.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 193170153}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &127495833
 GameObject:
@@ -436,6 +436,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.463715, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &193170152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 193170153}
+  m_Layer: 0
+  m_Name: Blast Doors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &193170153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 193170152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 245374751}
+  - {fileID: 860080534}
+  - {fileID: 859478161}
+  - {fileID: 96123216}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &214060520
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +479,7 @@ GameObject:
   - component: {fileID: 214060521}
   - component: {fileID: 214060523}
   m_Layer: 0
-  m_Name: CM vcam1
+  m_Name: CM Group Virtual Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,7 +541,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 214060520}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
   m_Name: 
@@ -531,7 +563,7 @@ GameObject:
   - component: {fileID: 245374752}
   - component: {fileID: 245374754}
   m_Layer: 0
-  m_Name: BlastDoor
+  m_Name: BlastDoor - Building 1
   m_TagString: BlastDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,12 +575,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 245374750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.5, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 193170153}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &245374752
 BoxCollider2D:
@@ -718,7 +750,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326880027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29, y: -21, z: -10}
+  m_LocalPosition: {x: -28.001049, y: -15.3903675, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1888334674}
@@ -934,7 +966,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &429203167 stripped
 Transform:
@@ -953,7 +985,7 @@ GameObject:
   - component: {fileID: 452859616}
   - component: {fileID: 452859615}
   m_Layer: 0
-  m_Name: LightLift (1)
+  m_Name: LightLift - Building 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1026,13 +1058,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 452859614}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49, y: 18, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 78.18768, y: 35.014847, z: 0.5151121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 746887417}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1517362960}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &545808241
 GameObject:
@@ -1280,7 +1312,7 @@ GameObject:
   - component: {fileID: 801154836}
   - component: {fileID: 801154838}
   m_Layer: 0
-  m_Name: LightLift
+  m_Name: LightLift - Building 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1292,13 +1324,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 801154834}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: -5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 38.18768, y: 12.014845, z: 0.5151121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 429203167}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1517362960}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &801154836
 BoxCollider2D:
@@ -1373,7 +1405,7 @@ GameObject:
   - component: {fileID: 805860215}
   - component: {fileID: 805860214}
   m_Layer: 0
-  m_Name: LightLift - Boss Building
+  m_Name: LightLift - Building 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1391,7 +1423,7 @@ Transform:
   m_Children:
   - {fileID: 89793521}
   m_Father: {fileID: 1517362960}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &805860214
 MonoBehaviour:
@@ -1466,7 +1498,7 @@ GameObject:
   - component: {fileID: 859478159}
   - component: {fileID: 859478158}
   m_Layer: 0
-  m_Name: BlastDoor (2)
+  m_Name: BlastDoor - Courtyard
   m_TagString: BlastDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1537,12 +1569,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 859478157}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 63.5, y: -9.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 193170153}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860080530
 GameObject:
@@ -1556,7 +1588,7 @@ GameObject:
   - component: {fileID: 860080532}
   - component: {fileID: 860080531}
   m_Layer: 0
-  m_Name: BlastDoor (1)
+  m_Name: BlastDoor - Skybridge
   m_TagString: BlastDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1627,12 +1659,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860080530}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 12.5, y: 15.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 193170153}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &927432649
 GameObject:
@@ -12994,28 +13026,37 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2.6942787, y: -13.375353}
-      - {x: 51.31883, y: -12.959391}
-      - {x: 51.094498, y: 16.374088}
-      - {x: 57.59438, y: 16.162819}
-      - {x: 59.306633, y: 14.016937}
-      - {x: 87.4848, y: 13.353285}
-      - {x: 87.015236, y: -12.810329}
-      - {x: 129.90126, y: -12.651752}
-      - {x: 128.91025, y: 26.748005}
-      - {x: 129.6011, y: 24.739658}
-      - {x: 154.74326, y: 24.750095}
-      - {x: 154.52338, y: 20.647722}
-      - {x: 179.12137, y: 20.373718}
-      - {x: 179.87378, y: 40.06121}
-      - {x: 153.75511, y: 39.857273}
-      - {x: 129.53171, y: 53.72887}
-      - {x: 104.934784, y: 54.56948}
-      - {x: 87.68814, y: 54.035183}
-      - {x: 57.797695, y: 53.84838}
-      - {x: 54.44088, y: 34.894707}
-      - {x: 33.707718, y: 31.985588}
-      - {x: -2.9010086, y: 29.205624}
+    - - {x: 17.089348, y: 12.899909}
+      - {x: -0.42523956, y: 12.657119}
+      - {x: -0.58779144, y: -12.640102}
+      - {x: 42.522408, y: -12.771557}
+      - {x: 42.51972, y: -2.0911522}
+      - {x: 58.665855, y: -2.1213503}
+      - {x: 60.990776, y: -1.8065252}
+      - {x: 60.127346, y: 11.533643}
+      - {x: 73.929825, y: 12.395826}
+      - {x: 83.49093, y: 12.308331}
+      - {x: 84.50555, y: -14.166183}
+      - {x: 106.29263, y: -14.229496}
+      - {x: 133.29543, y: -14.381132}
+      - {x: 132.9799, y: 20.875698}
+      - {x: 149.79155, y: 20.861553}
+      - {x: 150.60979, y: 20.701809}
+      - {x: 181.0382, y: 20.371714}
+      - {x: 180.12073, y: 40.653286}
+      - {x: 154.36467, y: 40.707798}
+      - {x: 136.9479, y: 43.84636}
+      - {x: 125.344635, y: 49.65649}
+      - {x: 109.65987, y: 51.23426}
+      - {x: 106.01845, y: 51.527477}
+      - {x: 104.94212, y: 52.05853}
+      - {x: 86.77692, y: 52.591774}
+      - {x: 57.602543, y: 52.75273}
+      - {x: 34.869316, y: 52.012917}
+      - {x: 34.082497, y: 30.541399}
+      - {x: 33.846004, y: 27.55888}
+      - {x: 30.864916, y: 19.194363}
+      - {x: 26.730635, y: 13.26773}
 --- !u!1 &1344879784
 GameObject:
   m_ObjectHideFlags: 0
@@ -13046,7 +13087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   liftBar: {fileID: 1520462101782580, guid: 96e70a84f79404724b12a77b4aa38798, type: 2}
-  speed: 4
+  speed: 3.3333333
   up: 1
   maxDistance: 14
   maxIdleTime: 3
@@ -13102,7 +13143,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1344879784}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.187679, y: -3.985155, z: 0.5151121}
+  m_LocalPosition: {x: 9, y: -4, z: 0.5151121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 354760031}
@@ -13182,9 +13223,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1344879788}
+  - {fileID: 801154835}
+  - {fileID: 452859618}
+  - {fileID: 2033985537}
   - {fileID: 805860213}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1548968585
 GameObject:
@@ -13254,7 +13298,7 @@ MonoBehaviour:
   m_MinimumFOV: 3
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 6.75
-  m_MaximumOrthoSize: 13
+  m_MaximumOrthoSize: 36
 --- !u!114 &1548968589
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -48040,7 +48084,7 @@ GameObject:
   - component: {fileID: 2033985535}
   - component: {fileID: 2033985534}
   m_Layer: 0
-  m_Name: LightLift (3)
+  m_Name: LightLift - Storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48113,13 +48157,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033985533}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53, y: -14, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 82.18768, y: 3.014845, z: 0.5151121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1399547240}
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 1517362960}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061831734
 GameObject:
