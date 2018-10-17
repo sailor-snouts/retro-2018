@@ -70,7 +70,6 @@ public class LightLiftController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if( collision.gameObject.tag == "Player" ){
-            Debug.Log("Light Lift collision enter");
             playerTransform = collision.gameObject.transform;
 
             moving = true;
@@ -81,7 +80,6 @@ public class LightLiftController : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Light Lift collision enter");
             playerTransform = null;
             moving = false;
         }

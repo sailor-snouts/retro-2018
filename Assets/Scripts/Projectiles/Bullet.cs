@@ -9,9 +9,9 @@ public class Bullet : MonoBehaviour {
     [SerializeField]
     protected float velocity = 1f;
     [SerializeField]
-    protected float dmg = 1f;
+    public float dmg = 1f;
     [SerializeField]
-    protected bool isFriendly = true;
+    public bool isFriendly = true;
     [SerializeField]
     protected float killAfter = 1f;
 
@@ -44,15 +44,18 @@ public class Bullet : MonoBehaviour {
     {
         if (this.isFriendly)
         {
+            Debug.Log("Bullet friendly hit");
             if (collision.gameObject.tag == "Enemy")
                 collision.gameObject.GetComponent<EnemyHealth>().Hurt(this.dmg);
             else if (collision.gameObject.tag == "BlastDoor")
                 collision.gameObject.GetComponent<BlastDoorController>().Blast(this.dmg);
             this.Hit();
         }
-        else if (!this.isFriendly && collision.gameObject.tag == "Player")
+        else if (!this.isFriendly)
         {
-            collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
+            Debug.Log("Bullet NOT Friendly hit");
+            if (collision.gameObject.tag == "Player")
+                collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
             this.Hit();
         }
     }

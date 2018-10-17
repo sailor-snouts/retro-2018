@@ -149,7 +149,6 @@ public class PlayerController : PhysicsEntity
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TRIGGER on object tagged: " + collision.gameObject.tag);
         if( collision.gameObject.tag == "VoidCollider") {
 
             // TODO: Implement properly
