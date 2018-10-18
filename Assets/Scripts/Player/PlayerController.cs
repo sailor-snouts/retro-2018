@@ -5,9 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerHealth))]
+[RequireComponent(typeof(PlayerLives))]
 public class PlayerController : PhysicsEntity
 {
     public PlayerHealth health;
+    public PlayerLives lives;
 
     [SerializeField]
     private bool isAlive = true;
@@ -121,7 +123,10 @@ public class PlayerController : PhysicsEntity
 
     protected void Update()
     {
-        if (!this.isAlive) return;
+        if (!this.health.IsAlive()) {
+            HandlePlayerDeath();
+            return;
+        }
 
         base.Update();
 
@@ -193,15 +198,20 @@ public class PlayerController : PhysicsEntity
         return this;
     }
 
+    private void HandlePlayerDeath() {
+        // TODO: Handle properly
+        //  - pause update function
+        //  - trigger explosion/sounds
+        //  - invoke next step after explosion animation is complete
+        this.lives.LoseLives(1.0f);
+        Debug.Log("Player " + player + " died!  Are they dead? " + this.lives.IsGameOver());
+        GameManager.instance.PlayerDeath(this.player, this.lives.IsGameOver());
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if( collision.gameObject.tag == "VoidCollider") {
-
-            // TODO: Implement properly
-            //  - player death (explosion or whatever)
-            //  - 
-
-            GameManager.instance.PlayerDeath(this.getPlayerNumber());
+            HandlePlayerDeath();
         }
     }
 }

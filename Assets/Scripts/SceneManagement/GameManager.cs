@@ -30,11 +30,30 @@ public class GameManager : MonoBehaviour
         return playerPrefabs[1];
     }
 
-    // TODO: Implement for real
-    internal void PlayerDeath(int playerNumber)
+    // isGameOver: Is the player who died out of the game
+    // TODO: If so, is the other player still alive?
+    internal void PlayerDeath(int playerNumber, bool isGameOver)
     {
-        Navigation navigation = FindObjectOfType<Navigation>();
-        navigation.StartGame();
+        bool loseGame = false;
+
+        if( isGameOver ) {
+            if( playerNumber == 1 ) {
+                playerOneActive = false;
+                loseGame = playerTwoActive;
+            } else {
+                playerTwoActive = false;
+                loseGame = playerOneActive;
+            }
+        }
+
+        if (loseGame)
+        {
+            Navigation navigation = FindObjectOfType<Navigation>();
+            navigation.LoseGame();
+        } else {
+            Navigation navigation = FindObjectOfType<Navigation>();
+            navigation.StartGame();
+        }
     }
 
     internal void Victory() {
