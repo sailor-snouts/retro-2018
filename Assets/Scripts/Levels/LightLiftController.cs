@@ -88,14 +88,17 @@ public class LightLiftController : MonoBehaviour {
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("Lift collider Exit!");
-        if (moving && playerTransform)
+        if (collision.gameObject.tag == "Player")
         {
-            Vector3 distance = playerTransform.position - transform.position;
-            Debug.Log("Distance from lift: " + distance.magnitude);
-            // TODO: Properly calculate PPU of the moving lift.
-            if ( distance.magnitude >= 1.2f ) 
-                playerTransform = null;
+            Debug.Log("Lift collider Exit!");
+            if (playerTransform)
+            {
+                Vector3 distance = playerTransform.position - transform.position;
+                Debug.Log("Distance from lift: " + distance.magnitude);
+                // TODO: Properly calculate PPU of the moving lift.
+                if (distance.magnitude >= 1.2f)
+                    playerTransform = null;
+            }
         }
     }
 }

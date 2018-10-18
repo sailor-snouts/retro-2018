@@ -36,4 +36,9 @@ public class GameManager : MonoBehaviour
         Navigation navigation = FindObjectOfType<Navigation>();
         navigation.StartGame();
     }
+
+    internal void Victory() {
+        Navigation navigation = FindObjectOfType<Navigation>();
+        navigation.WinGame();
+    }
 }

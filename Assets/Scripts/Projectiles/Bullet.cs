@@ -44,7 +44,6 @@ public class Bullet : MonoBehaviour {
     {
         if (this.isFriendly)
         {
-            Debug.Log("Bullet friendly hit");
             if (collision.gameObject.tag == "Enemy")
                 collision.gameObject.GetComponent<EnemyHealth>().Hurt(this.dmg);
             else if (collision.gameObject.tag == "BlastDoor")
@@ -53,7 +52,6 @@ public class Bullet : MonoBehaviour {
         }
         else if (!this.isFriendly)
         {
-            Debug.Log("Bullet NOT Friendly hit");
             if (collision.gameObject.tag == "Player")
                 collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
             this.Hit();
