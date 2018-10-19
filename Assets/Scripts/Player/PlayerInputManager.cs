@@ -167,13 +167,13 @@ public class PlayerInputManager : MonoBehaviour
 
         if (Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f || (this.isKeyboardP1 && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))))
         {
-            float menuDirection = Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f ? Input.GetAxis("Vertical_PlayerOne_Joystick") : (Input.GetKeyDown(KeyCode.UpArrow) ? -1f : 1f);
+            float menuDirection = Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f ? Input.GetAxis("Vertical_PlayerOne_Joystick") : (Input.GetKeyDown(KeyCode.UpArrow) ? 1f : -1f);
             menu.ChangeSelection(menuDirection);
             this.menuSelectionLagCounter = this.menuSelectionLag;
         }
         else if (Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f || (this.isKeyboardP2 && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))))
         {
-            float menuDirection = Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f ? Input.GetAxis("Vertical_PlayerTwo_Joystick") : (Input.GetKeyDown(KeyCode.UpArrow) ? -1f : 1f);
+            float menuDirection = Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f ? Input.GetAxis("Vertical_PlayerTwo_Joystick") : (Input.GetKeyDown(KeyCode.UpArrow) ? 1f : -1f);
             menu.ChangeSelection(Input.GetAxis("Vertical_PlayerTwo_Joystick"));
             this.menuSelectionLagCounter = this.menuSelectionLag;
         }

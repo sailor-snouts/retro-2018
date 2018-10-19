@@ -20,6 +20,8 @@ public class Navigation : MonoBehaviour
     #region New Scenes
     public void Title()
     {
+        Navigation.isPaused = false;
+        Time.timeScale = 1F;
         SceneManager.LoadScene("Title");
     }
 
