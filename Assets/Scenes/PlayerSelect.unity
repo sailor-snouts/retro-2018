@@ -2445,6 +2445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064016243}
   - component: {fileID: 2064016244}
+  - component: {fileID: 2064016245}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2481,6 +2482,23 @@ MonoBehaviour:
   - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
   playerOneActive: 1
   playerTwoActive: 0
+  maxPlayerLives: 3
+  playerOneLives: 0
+  playerTwoLives: 0
+--- !u!114 &2064016245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2064016242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd1457b49b154eb2a3299f6671c58ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  isKeyboardP1: 0
+  isKeyboardP2: 0
 --- !u!1001 &2080716944
 Prefab:
   m_ObjectHideFlags: 0

@@ -29,10 +29,12 @@ public class PlayerSelectController : MonoBehaviour {
 
         if( playerOneController && playerOneController.HasJoined()) {
             manager.playerOneActive = true;
+            manager.playerOneLives = manager.maxPlayerLives;
         }
 
         if( playerTwoController && playerTwoController.HasJoined() ) {
             manager.playerTwoActive = true;
+            manager.playerTwoLives = manager.maxPlayerLives;
         }
 
         navigation.StartGame();

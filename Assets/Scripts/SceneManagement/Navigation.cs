@@ -25,6 +25,7 @@ public class Navigation : MonoBehaviour
 
     public void PlayOnePlayerGame()
     {
+        Debug.Log("PlayOnePlayerGame");
         SceneManager.LoadScene("PlayerSelect");
     }
 
