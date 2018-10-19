@@ -17,9 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/sandbox-robert.unity
     guid: 4d3bd8e42ee6c694d8ccc7dfe84d0b1e
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/LightLevel0.unity
+    guid: ea1fd2ac44a654879baf3144740b9b48
   - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: 216d785b1d4e0164d9b66a1f029a6fe5

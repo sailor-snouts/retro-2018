@@ -43,24 +43,24 @@ public class PlayerTypeSelectController : MonoBehaviour
         // Optimization: cache for text flashing performance
         pressStartText = pressStartPanel.GetComponentsInChildren<Text>();
 
-        if (Input.GetJoystickNames().Length == 0)
-        {
-            controlAxis = axisName + "_Keyboard";
-        }
-        else
-        {
-            int controllerIndex = (axisName == "PlayerOne") ? 0 : 1;
-            if (Input.GetJoystickNames().Length > controllerIndex)
-            {
-                Debug.Log("Using controller for " + axisName);
-                controlAxis = axisName + "_Joystick";
-            }
-            else
-            {
-                Debug.Log("Using keyboard for " + axisName);
-                controlAxis = axisName + "_Keyboard";
-            }
-        }
+        //if (Input.GetJoystickNames().Length == 0)
+        //{
+        //    controlAxis = axisName + "_Keyboard";
+        //}
+        //else
+        //{
+        //    int controllerIndex = (axisName == "PlayerOne") ? 0 : 1;
+        //    if (Input.GetJoystickNames().Length > controllerIndex)
+        //    {
+        //        Debug.Log("Using controller for " + axisName);
+        //        controlAxis = axisName + "_Joystick";
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("Using keyboard for " + axisName);
+        //        controlAxis = axisName + "_Keyboard";
+        //    }
+        //}
 
     }
 
@@ -86,7 +86,8 @@ public class PlayerTypeSelectController : MonoBehaviour
             return;
         }
 
-        float horizontal = Input.GetAxisRaw("Horizontal_" + controlAxis);
+        //float horizontal = Input.GetAxisRaw("Horizontal_" + controlAxis);
+        float horizontal = Input.GetAxisRaw("Horizontal");
 
         if (horizontal != 0 && (Mathf.Abs(horizontal) >= inputLag))
         {

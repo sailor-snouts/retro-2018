@@ -34,8 +34,8 @@ public class PhysicsEntity : MonoBehaviour
 
     protected void Update()
     {
-        this.targetVelocity = Vector2.zero;
-        ComputeVelocity();
+        //this.targetVelocity = Vector2.zero;
+        //ComputeVelocity();
     }
 
     protected virtual void ComputeVelocity()
@@ -45,6 +45,8 @@ public class PhysicsEntity : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        this.targetVelocity = Vector2.zero;
+        ComputeVelocity();
         this.velocity += Physics2D.gravity * Time.fixedDeltaTime;
         this.velocity.x = this.targetVelocity.x;
 

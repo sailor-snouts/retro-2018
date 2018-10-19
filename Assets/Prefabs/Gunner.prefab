@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4207220987322804}
   - component: {fileID: 114467865811281710}
+  - component: {fileID: 114578211520329468}
   - component: {fileID: 114179717466479696}
   - component: {fileID: 212491302451889020}
   - component: {fileID: 50488779433126654}
@@ -44,7 +45,7 @@ GameObject:
   - component: {fileID: 95870530028612360}
   m_Layer: 0
   m_Name: Gunner
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,12 +290,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   health: {fileID: 0}
+  lives: {fileID: 0}
   isAlive: 1
   maxSpeed: 7
   jumpHeight: 5
   jumpApexTime: 0.3
   jumpRelease: 0.5
   jumpVelocity: 0
+  knockBackDirection: {x: -1, y: 2}
+  knockBackForce: 20
+  knockBackInvincability: 0.25
+  knockBackInvincabilityTimer: 0
   player: 1
 --- !u!114 &114315746612506044
 MonoBehaviour:
@@ -307,7 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9398d2222c4b0d24ea5628fcc735d462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1525157069991382, guid: 0e1da1f1a36ec634f929519fc0e4e08c, type: 2}
+  bulletPrefab: {fileID: 1525157069991382, guid: 0e1da1f1a36ec634f929519fc0e4e08c,
+    type: 2}
+  isFriendly: 1
+  damage: 1
 --- !u!114 &114467865811281710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,6 +333,23 @@ MonoBehaviour:
   currentHealth: 100
   previousHealth: 100
   player: 1
+--- !u!114 &114578211520329468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1435629157624562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e85721ac85d4ee1a1904b64b015b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask: {fileID: 0}
+  maxLives: 3
+  currentLives: 3
+  previousLives: 3
+  player: 1
+  lives: []
 --- !u!212 &212491302451889020
 SpriteRenderer:
   m_ObjectHideFlags: 1

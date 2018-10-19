@@ -15,6 +15,10 @@ public class PlayerInputManager : MonoBehaviour
 
     private PlayerController player1;
     private PlayerController player2;
+    [SerializeField]
+    private bool isKeyboardP1 = false;
+    [SerializeField]
+    private bool isKeyboardP2 = false;
     private Navigation navigation;
     private MenuController menu;
 
@@ -32,16 +36,30 @@ public class PlayerInputManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
+    // Called on level reload
+    public void Reset()
+    {
         foreach (PlayerController player in FindObjectsOfType<PlayerController>())
         {
             if (player.getPlayerNumber() == 1 && this.player1 == null)
             {
                 this.player1 = player;
+                if(Input.GetJoystickNames().Length < 2)// @TODO might be a bug but i have 1 with no joystick plugged in.
+                {
+                    this.isKeyboardP1 = true;
+                }
                 continue;
             }
             if (player.getPlayerNumber() == 2 && this.player2 == null)
             {
                 this.player2 = player;
+                if (Input.GetJoystickNames().Length < 3)
+                {
+                    this.isKeyboardP2 = true;
+                }
                 continue;
             }
 
@@ -49,11 +67,22 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         this.navigation = FindObjectOfType<Navigation>();
-        SceneManager.sceneLoaded += SceneLoaded;
+
+    }
+
+    public void Restart() 
+    {
+        this.player1 = this.player2 = null;
+        Reset();
     }
 
     protected void Update()
     {
+        if(this.state == States.GAME && this.player1 == null)
+        {
+            this.Reset();
+        }
+
         if (this.state == States.SPLASH)
         {
             this.SplashInput();
@@ -88,6 +117,7 @@ public class PlayerInputManager : MonoBehaviour
                 this.state = States.PAUSE;
                 break;
             case "Scenes/Sandbox-robert":
+            case "Scenes/LightLevel0":
                 this.state = States.GAME;
                 break;
             case "Scenes/Options":
@@ -101,7 +131,7 @@ public class PlayerInputManager : MonoBehaviour
 
     protected void PauseInput()
     { 
-        if (Input.GetKeyDown(KeyCode.JoystickButton7))
+        if (Input.GetKeyDown(KeyCode.JoystickButton7) || ((Input.GetKeyDown(KeyCode.Escape)) && (this.isKeyboardP1 || this.isKeyboardP2)))
         {
             this.navigation.PauseGame();
             if (Navigation.isPaused)
@@ -123,7 +153,7 @@ public class PlayerInputManager : MonoBehaviour
             this.menu = FindObjectOfType<MenuController>();
         }
 
-        if (Input.GetKeyDown(KeyCode.JoystickButton1))
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) || (this.isKeyboardP1 && Input.GetKeyDown(KeyCode.Return)))
         {
             menu.SelectOption();
         }
@@ -135,13 +165,15 @@ public class PlayerInputManager : MonoBehaviour
             return;
         }
 
-        if (Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f)
+        if (Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f || (this.isKeyboardP1 && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))))
         {
-            menu.ChangeSelection(Input.GetAxis("Vertical_PlayerOne_Joystick"));
+            float menuDirection = Mathf.Abs(Input.GetAxis("Vertical_PlayerOne_Joystick")) > 0.01f ? Input.GetAxis("Vertical_PlayerOne_Joystick") : (Input.GetKeyDown(KeyCode.UpArrow) ? -1f : 1f);
+            menu.ChangeSelection(menuDirection);
             this.menuSelectionLagCounter = this.menuSelectionLag;
         }
-        else if (Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f)
+        else if (Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f || (this.isKeyboardP2 && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))))
         {
+            float menuDirection = Mathf.Abs(Input.GetAxis("Vertical_PlayerTwo_Joystick")) > 0.01f ? Input.GetAxis("Vertical_PlayerTwo_Joystick") : (Input.GetKeyDown(KeyCode.UpArrow) ? -1f : 1f);
             menu.ChangeSelection(Input.GetAxis("Vertical_PlayerTwo_Joystick"));
             this.menuSelectionLagCounter = this.menuSelectionLag;
         }
@@ -149,17 +181,22 @@ public class PlayerInputManager : MonoBehaviour
 
     protected void GameInput()
     {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        if (this.player1 == null)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) || (this.isKeyboardP1 && Input.GetKeyDown(KeyCode.Space)))
         {
             this.player1.Jump();
         }
-        if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+        if (Input.GetKeyUp(KeyCode.Joystick1Button0) || (this.isKeyboardP1 && Input.GetKeyUp(KeyCode.Space)))
         {
             this.player1.JumpRelease();
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1) || (this.isKeyboardP1 && Input.GetKeyDown(KeyCode.LeftShift)))
         {
-            if (Input.GetAxis("Vertical_PlayerOne_Joystick") < -0.5f)
+            if (Input.GetAxis("Vertical_PlayerOne_Joystick") < -0.5f || (this.isKeyboardP1 && Input.GetKey(KeyCode.UpArrow)))
             {
                 this.player1.Attack2();
             }
@@ -168,13 +205,36 @@ public class PlayerInputManager : MonoBehaviour
                 this.player1.Attack1();
             }
         }
-        player1.Walk(Input.GetAxis("Horizontal_PlayerOne_Joystick"));
+        if (Input.GetKeyUp(KeyCode.Joystick1Button1) || (this.isKeyboardP1 && Input.GetKeyUp(KeyCode.LeftShift)))
+        {
+            this.player1.FinishAttak1();
+            this.player1.FinishAttak2();
+        }
+
+            float playerWalk1 = 0f;
+        if(this.isKeyboardP1)
+        {
+            if(Input.GetKey(KeyCode.LeftArrow))
+            {
+                playerWalk1 = -1f;
+            }
+            else if(Input.GetKey(KeyCode.RightArrow))
+            {
+                playerWalk1 = 1f;
+            }
+        } 
+        else
+        {
+            playerWalk1 = Input.GetAxis("Horizontal_PlayerOne_Joystick");
+        }
+        player1.Walk(playerWalk1);
 
 
         if (this.player2 == null)
         {
             return;
         }
+        // @TODO add keyboard controls for player 2
 
         if (Input.GetKeyDown(KeyCode.Joystick2Button0))
         {

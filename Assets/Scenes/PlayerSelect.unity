@@ -734,6 +734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569066457}
   - component: {fileID: 569066455}
+  - component: {fileID: 569066456}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -755,6 +756,24 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &569066456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 569066454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!4 &569066457
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,7 +1081,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &972712706
@@ -1178,7 +1197,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1044980452
@@ -1509,7 +1528,6 @@ MonoBehaviour:
   - {fileID: 1924688748}
   - {fileID: 1835780205}
   eventSystem: {fileID: 569066455}
-  inputLag: 0.3
   axisName: PlayerOne
 --- !u!114 &1344807914
 MonoBehaviour:
@@ -2463,8 +2481,6 @@ MonoBehaviour:
   - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
   playerOneActive: 1
   playerTwoActive: 0
-  jumpHeight: 5
-  jumpApexTime: 0.5
 --- !u!1001 &2080716944
 Prefab:
   m_ObjectHideFlags: 0

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletGenerator : MonoBehaviour {
-    public GameObject bullet;
-	
+    public GameObject bulletPrefab;
+    public bool isFriendly = true;
+    public float damage = 1.0f;
+
 	public void Fire(Vector2 direction)
     {
-        GameObject bullet = Instantiate(this.bullet);
+        GameObject bulletObj = Instantiate(this.bulletPrefab);
+        Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.isFriendly = this.isFriendly;
+        bullet.dmg = this.damage;
         bullet.transform.position = this.transform.position;
         bullet.GetComponent<Bullet>().SetDirection(direction);
 
