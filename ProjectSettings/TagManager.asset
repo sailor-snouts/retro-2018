@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - BlastDoor
   - ExtraLife
+  - Energy
   layers:
   - Default
   - TransparentFX

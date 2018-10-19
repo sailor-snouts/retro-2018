@@ -228,7 +228,17 @@ public class PlayerController : PhysicsEntity
         }
 
         if( collision.gameObject.tag == "ExtraLife") {
-            GameManager.instance.GainLives(player);
+
+            ExtraLifePickup extraLife = collision.gameObject.GetComponent<ExtraLifePickup>();
+
+            GameManager.instance.GainLives(player, extraLife.ExtraLives());
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Energy")
+        {
+            EnergyPickup energy = collision.gameObject.GetComponent<EnergyPickup>();
+            health.GainHealth(energy.EnergyAmount());
             Destroy(collision.gameObject);
         }
     }

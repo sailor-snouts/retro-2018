@@ -56,18 +56,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GainLives(int playerNumber)
+    public void GainLives(int playerNumber, int extraLives)
     {
         if (playerNumber == 1)
         {
-            playerOneLives++;
+            playerOneLives += extraLives;
             if (playerOneLives > maxPlayerLives) playerOneLives = maxPlayerLives;
             return;
         }
 
         if (playerNumber == 2)
         {
-            playerTwoLives++;
+            playerTwoLives += extraLives;
             if (playerTwoLives > maxPlayerLives) playerTwoLives = maxPlayerLives;
             return;
         }
