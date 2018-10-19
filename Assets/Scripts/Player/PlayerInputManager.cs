@@ -181,6 +181,11 @@ public class PlayerInputManager : MonoBehaviour
 
     protected void GameInput()
     {
+        if (this.player1 == null)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) || (this.isKeyboardP1 && Input.GetKeyDown(KeyCode.Space)))
         {
             this.player1.Jump();

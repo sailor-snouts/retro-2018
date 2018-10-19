@@ -194,6 +194,13 @@ public class PlayerController : PhysicsEntity
                 this.health = ph;
             }
         }
+        foreach (PlayerLives pl in FindObjectsOfType<PlayerLives>())
+        {
+            if (this.getPlayerNumber() == pl.getPlayerNumber())
+            {
+                this.lives = pl;
+            }
+        }
 
         return this;
     }
@@ -203,9 +210,7 @@ public class PlayerController : PhysicsEntity
         //  - pause update function
         //  - trigger explosion/sounds
         //  - invoke next step after explosion animation is complete
-        this.lives.LoseLives(1.0f);
-        Debug.Log("Player " + player + " died!  Are they dead? " + this.lives.IsGameOver());
-        GameManager.instance.PlayerDeath(this.player, this.lives.IsGameOver());
+        GameManager.instance.PlayerDeath(this.player);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
