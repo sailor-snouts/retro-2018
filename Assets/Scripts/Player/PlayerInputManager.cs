@@ -205,8 +205,13 @@ public class PlayerInputManager : MonoBehaviour
                 this.player1.Attack1();
             }
         }
+        if (Input.GetKeyUp(KeyCode.Joystick1Button1) || (this.isKeyboardP1 && Input.GetKeyUp(KeyCode.LeftShift)))
+        {
+            this.player1.FinishAttak1();
+            this.player1.FinishAttak2();
+        }
 
-        float playerWalk1 = 0f;
+            float playerWalk1 = 0f;
         if(this.isKeyboardP1)
         {
             if(Input.GetKey(KeyCode.LeftArrow))

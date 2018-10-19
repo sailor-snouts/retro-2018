@@ -720,10 +720,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabs:
-  - {fileID: 1409229946987960, guid: a83f7880f724cf148ba04018cdaef788, type: 2}
+  - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
   - {fileID: 1409229946987960, guid: a83f7880f724cf148ba04018cdaef788, type: 2}
   playerOneActive: 1
   playerTwoActive: 1
+  maxPlayerLives: 3
+  playerOneLives: 0
+  playerTwoLives: 0
 --- !u!114 &1453553263
 MonoBehaviour:
   m_ObjectHideFlags: 0
