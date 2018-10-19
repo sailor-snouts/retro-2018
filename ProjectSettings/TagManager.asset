@@ -10,6 +10,7 @@ TagManager:
   - VoidCollider
   - Bullet
   - BlastDoor
+  - ExtraLife
   layers:
   - Default
   - TransparentFX

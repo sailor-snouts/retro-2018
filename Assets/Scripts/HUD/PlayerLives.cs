@@ -15,7 +15,6 @@ public class PlayerLives : MonoBehaviour
 
         for (int i = 0; i < lives.Length; i++)
         {
-            //Debug.Log("Setting enabled on life " + i + " = " + (i < playerLives));
             lives[i].enabled = (i < playerLives);
         }
     }

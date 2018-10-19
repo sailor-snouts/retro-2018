@@ -44,7 +44,7 @@ public class LevelController : MonoBehaviour {
         CinemachineTargetGroup targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
         targetGroup.m_Targets = new CinemachineTargetGroup.Target[playerCount];
         for (int i = 0; i < playerCount; i++ ) {
-            Cinemachine.CinemachineTargetGroup.Target target;
+            CinemachineTargetGroup.Target target;
             target.target = i == 0 ? playerOne.transform : playerTwo.transform;
             target.weight = 1.0f;
             target.radius = 0.0f;

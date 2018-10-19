@@ -44,6 +44,9 @@ public class PlayerController : PhysicsEntity
     [SerializeField]
     protected int player = 1;
 
+    [SerializeField]
+    private GameObject deathExplosion;
+
     protected SpriteRenderer spriteRenderer;
     protected Animator anim;
 
@@ -210,6 +213,11 @@ public class PlayerController : PhysicsEntity
         //  - pause update function
         //  - trigger explosion/sounds
         //  - invoke next step after explosion animation is complete
+        deathExplosion.SetActive(true);
+        Invoke("OnDeath", 0.3f);
+    }
+
+    void OnDeath() {
         GameManager.instance.PlayerDeath(this.player);
     }
 
@@ -217,6 +225,11 @@ public class PlayerController : PhysicsEntity
     {
         if( collision.gameObject.tag == "VoidCollider") {
             HandlePlayerDeath();
+        }
+
+        if( collision.gameObject.tag == "ExtraLife") {
+            GameManager.instance.GainLives(player);
+            Destroy(collision.gameObject);
         }
     }
 }

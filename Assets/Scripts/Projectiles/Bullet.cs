@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour {
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Trigger enter against " + collision.gameObject.tag);
         if (this.isFriendly)
         {
             if (collision.gameObject.tag == "Enemy")
@@ -54,6 +55,8 @@ public class Bullet : MonoBehaviour {
         {
             if (collision.gameObject.tag == "Player")
                 collision.GetComponent<PlayerController>().GetHealth().Hurt(this.dmg);
+            if (collision.gameObject.tag == "Enemy")
+                return;
             this.Hit();
         }
     }

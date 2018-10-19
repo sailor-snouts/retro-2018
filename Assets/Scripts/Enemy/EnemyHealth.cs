@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     private float maxHealth = 5;
     [SerializeField]
     private float currentHealth = 5;
+    [SerializeField]
+    private GameObject deathExplosion;
 
     private void OnEnable()
     {
@@ -21,8 +23,13 @@ public class EnemyHealth : MonoBehaviour
     {
         if(!this.IsAlive())
         {
-            Destroy(this.gameObject);
+            deathExplosion.SetActive(true);
+            Invoke("OnDeath", 1.0f);
         }
+    }
+
+    void OnDeath() {
+        Destroy(this.gameObject);
     }
 
     public bool IsAlive()
@@ -37,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Hurt(float amt)
     {
+        Debug.Log("Enemy hurt by " + amt);
         this.currentHealth = Mathf.Clamp(this.currentHealth - amt, 0, this.maxHealth);
     }
 }
