@@ -20,11 +20,13 @@ public class PlayerTypeSelectController : MonoBehaviour
     private string controlAxis = "Joystick";
 
     [SerializeField]
+    bool hasJoined;
+
+    [SerializeField]
     float inputLag = 0.1f;
     float playerSelectLagRemaining = 0.0f;
 
     bool flashUp;
-    bool hasJoined;
     int playerType = 0;
 
     string[] playerTypeNames = new string[2];

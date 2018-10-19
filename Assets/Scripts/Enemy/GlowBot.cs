@@ -14,14 +14,21 @@ public class GlowBot : MonoBehaviour {
     float fireTimer;
     int fireDirection = 2;
 
+    EnemyHealth health;
+
     void Start()
     {
         blaster = GetComponent<BulletGenerator>();
         startPos = transform.position;
+        health = GetComponent<EnemyHealth>();
     }
 
     void FixedUpdate()
     {
+        if( !health.IsAlive()) {
+            return;
+        }
+
         fireTimer += Time.fixedDeltaTime;
         if (fireTimer >= fireRate)
         {

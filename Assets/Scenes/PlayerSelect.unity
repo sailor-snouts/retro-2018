@@ -1465,6 +1465,7 @@ MonoBehaviour:
   playerTypeText: {fileID: 235218076}
   playerTypeTextShadow: {fileID: 726269176}
   axisName: PlayerTwo
+  hasJoined: 0
   inputLag: 0.3
 --- !u!1 &1344807911
 GameObject:
@@ -2435,6 +2436,7 @@ MonoBehaviour:
   playerTypeText: {fileID: 1697868511}
   playerTypeTextShadow: {fileID: 2038711054}
   axisName: PlayerOne
+  hasJoined: 1
   inputLag: 0.3
 --- !u!1 &2064016242
 GameObject:

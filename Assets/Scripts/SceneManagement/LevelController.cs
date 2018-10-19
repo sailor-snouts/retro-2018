@@ -26,9 +26,7 @@ public class LevelController : MonoBehaviour {
                 playerOne = Instantiate(manager.GetPlayerOne());
                 playerOne.transform.position = playerOneSpawnPoint.transform.position;
                 playerOne.GetComponent<PlayerController>().SetPlayerNumber(1);
-                //playerTransform = playerOne.transform;
                 playerCount++;
-                manager.playerOneActive = true;
             }
 
             if (manager.playerTwoActive)
@@ -37,7 +35,6 @@ public class LevelController : MonoBehaviour {
                 playerTwo.GetComponent<PlayerController>().SetPlayerNumber(2);
                 playerTwo.transform.position = playerTwoSpawnPoint.transform.position;
                 playerCount++;
-                manager.playerTwoActive = true;
             }
         }
 
