@@ -39,17 +39,25 @@ public class LevelController : MonoBehaviour {
         }
 
         CinemachineTargetGroup targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
-        targetGroup.m_Targets = new CinemachineTargetGroup.Target[playerCount];
-        for (int i = 0; i < playerCount; i++ ) {
-            CinemachineTargetGroup.Target target;
-            target.target = i == 0 ? playerOne.transform : playerTwo.transform;
-            target.weight = 1.0f;
-            target.radius = 0.0f;
-            targetGroup.m_Targets[i] = target;
+        if( targetGroup ) {
+            targetGroup.m_Targets = new CinemachineTargetGroup.Target[playerCount];
+            for (int i = 0; i < playerCount; i++)
+            {
+                CinemachineTargetGroup.Target target;
+                target.target = i == 0 ? playerOne.transform : playerTwo.transform;
+                target.weight = 1.0f;
+                target.radius = 0.0f;
+                targetGroup.m_Targets[i] = target;
+            }
+        } else {
+            Debug.LogWarning("Cinemachine Target Group not configured correctly, get ready for a boring view");
         }
 
-        PlayerInputManager inputManager = manager.GetComponent<PlayerInputManager>();
-        inputManager.Restart();
+        PlayerInputManager inputManager = FindObjectOfType<PlayerInputManager>();
+        if (inputManager)
+            inputManager.Restart();
+        else
+            Debug.LogWarning("Couldn't find the input manager, get ready for a boring game!");
     }
 	
 	// Update is called once per frame

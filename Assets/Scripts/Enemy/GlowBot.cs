@@ -55,14 +55,4 @@ public class GlowBot : MonoBehaviour {
         float distance = amplitude * Mathf.Sin(theta);
         transform.position = startPos + Vector3.right * distance;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Triggered by " + collision.gameObject.tag);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Collided with " + collision.gameObject.tag);
-    }
 }

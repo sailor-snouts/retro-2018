@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerInputManager))]
 public class GameManager : MonoBehaviour
 {
     [SerializeField]

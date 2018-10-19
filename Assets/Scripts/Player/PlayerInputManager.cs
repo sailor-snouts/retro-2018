@@ -103,27 +103,27 @@ public class PlayerInputManager : MonoBehaviour
     {
         switch (scene.name)
         {
-            case "Scenes/Splash":
-            case "Scenes/Title":
-            case "Scenes/OpeningCrawl":
-            case "Scenes/Win":
-            case "Scenes/Lose":
+            case "Splash":
+            case "OpeningCrawl":
+            case "Win":
+            case "Lose":
                 this.state = States.SPLASH;
                 break;
-            case "Scenes/Loading":
+            case "Loading":
                 this.state = States.LOADING;
                 break;
-            case "Scenes/Pause":
+            case "Pause":
                 this.state = States.PAUSE;
                 break;
-            case "Scenes/Sandbox-robert":
-            case "Scenes/LightLevel0":
+            case "Sandbox-robert":
+            case "LightLevel0":
                 this.state = States.GAME;
                 break;
-            case "Scenes/Options":
+            case "Title":
+            case "Options":
                 this.state = States.MENU;
                 break;
-            case "Scenes/PlayerSelect":
+            case "PlayerSelect":
                 this.state = States.SELECT;
                 break;
         }
@@ -263,7 +263,10 @@ public class PlayerInputManager : MonoBehaviour
         if (Input.anyKeyDown)
         {
             SimpleSceneTransition transition = FindObjectOfType<SimpleSceneTransition>();
-            transition.Change();
+            if (transition)
+                transition.Change();
+            else
+                Debug.LogWarning("System trying to transition, but no SimpleScene configured");
         }
     }
 
