@@ -65,7 +65,7 @@ public class MenuController : MonoBehaviour {
     }
 
     public void SelectOption() {
-        //Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
-        //button.OnSubmit(null);
+        Button button = menuOptions[selectedMenuOption].GetComponent<Button>();
+        button.OnSubmit(null);
     }
 }

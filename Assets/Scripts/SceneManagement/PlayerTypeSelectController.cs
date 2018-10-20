@@ -37,7 +37,7 @@ public class PlayerTypeSelectController : MonoBehaviour
     void Start()
     {
         flashUp = false;
-        hasJoined = false;
+//        hasJoined = false;
 
         playerTypeNames[0] = "Gunner";
         playerTypeNames[1] = "Paladin";
@@ -68,7 +68,6 @@ public class PlayerTypeSelectController : MonoBehaviour
 
     void Update()
     {
-
         HandlePlayerSelectInput();
     }
 

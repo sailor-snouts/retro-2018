@@ -13,7 +13,6 @@ public class PlayerSelectController : MonoBehaviour {
     PlayerTypeSelectController playerTwoController = null;
 
     void Start () {
-	  
     }
 	
 	void Update () {
@@ -27,13 +26,15 @@ public class PlayerSelectController : MonoBehaviour {
             return;
         }
 
-        if( playerOneController && playerOneController.HasJoined()) {
+        if( playerOneController ) {
             manager.playerOneActive = true;
+            manager.playerOneType = playerOneController.GetPlayerType();
             manager.playerOneLives = manager.maxPlayerLives;
         }
 
         if( playerTwoController && playerTwoController.HasJoined() ) {
             manager.playerTwoActive = true;
+            manager.playerTwoType = playerTwoController.GetPlayerType();
             manager.playerTwoLives = manager.maxPlayerLives;
         }
 

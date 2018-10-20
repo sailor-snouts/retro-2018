@@ -42,12 +42,19 @@ public class PlayerInputManager : MonoBehaviour
     // Called on level reload
     public void Reset()
     {
-        foreach (PlayerController player in FindObjectsOfType<PlayerController>())
+        PlayerController[] playerControllers = FindObjectsOfType<PlayerController>();
+
+        if( playerControllers.Length == 0 ) {
+            isKeyboardP1 = true;
+            return;
+        }
+
+        foreach (PlayerController player in playerControllers)
         {
             if (player.getPlayerNumber() == 1 && this.player1 == null)
             {
                 this.player1 = player;
-                if(Input.GetJoystickNames().Length < 2)// @TODO might be a bug but i have 1 with no joystick plugged in.
+                if(Input.GetJoystickNames().Length < 1)// @TODO might be a bug but i have 1 with no joystick plugged in.
                 {
                     this.isKeyboardP1 = true;
                 }
@@ -56,7 +63,7 @@ public class PlayerInputManager : MonoBehaviour
             if (player.getPlayerNumber() == 2 && this.player2 == null)
             {
                 this.player2 = player;
-                if (Input.GetJoystickNames().Length < 3)
+                if (Input.GetJoystickNames().Length < 2)
                 {
                     this.isKeyboardP2 = true;
                 }
@@ -96,6 +103,10 @@ public class PlayerInputManager : MonoBehaviour
         {
             this.GameInput();
             this.PauseInput();
+        }
+        else if (this.state == States.MENU)
+        {
+            this.MenuInput();
         }
     }
 

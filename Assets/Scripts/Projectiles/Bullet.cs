@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour {
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger enter against " + collision.gameObject.tag);
+//        Debug.Log("Trigger enter against " + collision.gameObject.tag);
         if (this.isFriendly)
         {
             if (collision.gameObject.tag == "Enemy")

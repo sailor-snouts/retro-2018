@@ -2523,12 +2523,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs:
   - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
-  - {fileID: 1435629157624562, guid: a76c8fa3bb3fec04b8078fc25518d37d, type: 2}
+  - {fileID: 1409229946987960, guid: a83f7880f724cf148ba04018cdaef788, type: 2}
   playerOneActive: 1
   playerTwoActive: 0
   maxPlayerLives: 3
   playerOneLives: 3
   playerTwoLives: 0
+  playerOneType: 0
+  playerTwoType: 1
 --- !u!1001 &2080716944
 Prefab:
   m_ObjectHideFlags: 0

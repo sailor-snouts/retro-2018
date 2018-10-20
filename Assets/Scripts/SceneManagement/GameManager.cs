@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public int playerOneLives = 0;
     public int playerTwoLives = 0;
 
+    public int playerOneType = 0;
+    public int playerTwoType = 1;
+
     void Awake()
     {
         if (instance == null)
@@ -26,11 +29,11 @@ public class GameManager : MonoBehaviour
     }
 
     internal GameObject GetPlayerOne() {
-        return playerPrefabs[0];
+        return playerPrefabs[playerOneType];
     }
 
     internal GameObject GetPlayerTwo() {
-        return playerPrefabs[1];
+        return playerPrefabs[playerTwoType];
     }
 
     // isGameOver: Is the player who died out of the game
