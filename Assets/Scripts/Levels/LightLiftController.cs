@@ -65,7 +65,7 @@ public class LightLiftController : MonoBehaviour {
     }
 
     private void ResetPosition() {
-        Debug.Log("Resetting Lift Position");
+   //     Debug.Log("Resetting Lift Position");
         up = !up;
         Vector3 maxVector = up ? new Vector3(0.0f, maxDistance) : new Vector3(0.0f, -maxDistance);
         maxPosition = transform.position + maxVector;
@@ -94,7 +94,7 @@ public class LightLiftController : MonoBehaviour {
             if (playerTransform)
             {
                 Vector3 distance = playerTransform.position - transform.position;
-                Debug.Log("Distance from lift: " + distance.magnitude);
+//                Debug.Log("Distance from lift: " + distance.magnitude);
                 // TODO: Properly calculate PPU of the moving lift.
                 if (distance.magnitude >= 1.2f)
                     playerTransform = null;

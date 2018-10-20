@@ -7,15 +7,43 @@ public class BulletGenerator : MonoBehaviour {
     public bool isFriendly = true;
     public float damage = 1.0f;
 
-	public void Fire(Vector2 direction)
+    private AudioSource bulletSfx;
+    private List<GameObject> cache;
+
+
+    private void Start()
     {
-        GameObject bulletObj = Instantiate(this.bulletPrefab);
+        bulletSfx = GetComponent<AudioSource>();
+        cache = new List<GameObject>();
+    }
+
+    public void Fire(Vector2 direction)
+    {
+
+        bulletSfx.Play();
+        GameObject bulletObj;
+
+        if( cache.Count > 0 ) {
+            bulletObj = cache[0];
+            cache.RemoveAt(0);
+            bulletObj.SetActive(true);
+        } else {
+            bulletObj = Instantiate(this.bulletPrefab);
+        }
+
         Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.gun = this;
         bullet.isFriendly = this.isFriendly;
         bullet.dmg = this.damage;
         bullet.transform.position = this.transform.position;
         bullet.GetComponent<Bullet>().SetDirection(direction);
 
         bullet.transform.Rotate(Vector3.forward, Vector2.Angle(Vector2.right, direction));
+    }
+
+    internal void ReturnToCache(GameObject bulletObj)
+    {
+        bulletObj.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
+        cache.Add(bulletObj);
     }
 }

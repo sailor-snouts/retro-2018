@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour {
     protected float killAfter = 1f;
 
     protected Animator anim;
-
+    internal BulletGenerator gun;
 
     public void OnEnable()
     {
@@ -63,12 +63,19 @@ public class Bullet : MonoBehaviour {
 
     protected void Hit()
     {
-        this.velocity = 0;
+        //this.velocity = 0;
         this.anim.SetBool("IsHit", true);
     }
 
     protected void Die()
     {
-        Destroy(this.gameObject);
+        if(gun) {
+            this.gameObject.SetActive(false);
+            //this.velocity = 1.0f;
+            this.killAfter = 1.0f;
+            gun.ReturnToCache(this.gameObject);
+        } else {
+            Destroy(this.gameObject);
+        }
     }
 }
