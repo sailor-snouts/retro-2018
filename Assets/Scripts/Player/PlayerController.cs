@@ -54,6 +54,7 @@ public class PlayerController : PhysicsEntity
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.anim = GetComponent<Animator>();
+        QualitySettings.vSyncCount = 0;
     }
 
    virtual public void Jump()
