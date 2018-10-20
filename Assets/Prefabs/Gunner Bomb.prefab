@@ -115,6 +115,8 @@ MonoBehaviour:
   killAfter: 20
   delay: 2
   radius: 1
+  SFXExplosion: {fileID: 8300000, guid: 40b425c077620a9488ac11b970d558be, type: 3}
+  SFXBounce: {fileID: 0}
 --- !u!212 &212757090004525270
 SpriteRenderer:
   m_ObjectHideFlags: 1

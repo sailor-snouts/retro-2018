@@ -418,6 +418,10 @@ MonoBehaviour:
   knockBackInvincabilityTimer: 0
   player: 1
   deathExplosion: {fileID: 1045128363970204}
+  SFXDie: {fileID: 8300000, guid: 16ff81cb8d1eac5428c3f14362823677, type: 3}
+  SFXHurt: {fileID: 8300000, guid: 6f9b3b5f6bcf6814aa12e6c7f86de40f, type: 3}
+  SFXJump: {fileID: 8300000, guid: e0a82f7d0053e0c4db6d88d908895499, type: 3}
+  SFXLand: {fileID: 8300000, guid: 6b15662722acc26438bd8953c0e47434, type: 3}
 --- !u!114 &114786603250801288
 MonoBehaviour:
   m_ObjectHideFlags: 1
