@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class Bomb : Bullet {
     protected Rigidbody2D rb2d;
+    protected AudioSource audio;
 
     [SerializeField]
     protected float delay = 2f;
@@ -14,9 +16,16 @@ public class Bomb : Bullet {
     [SerializeField]
     protected float radius = 1f;
 
+    [SerializeField]
+    protected AudioClip SFXExplosion;
+
+    [SerializeField]
+    protected AudioClip SFXBounce;
+
     private void OnEnable()
     {
         base.OnEnable();
+        this.audio = GetComponent<AudioSource>();
         this.rb2d = GetComponent<Rigidbody2D>();
         this.SetDirection(this.direction);
     }
@@ -44,6 +53,7 @@ public class Bomb : Bullet {
     protected void StartExplosion()
     {
         this.anim.SetBool("IsExplode", true);
+        this.audio.PlayOneShot(this.SFXExplosion);
     }
 
     protected void Explode()

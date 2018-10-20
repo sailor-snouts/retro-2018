@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerHealth))]
 [RequireComponent(typeof(PlayerLives))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : PhysicsEntity
 {
     public PlayerHealth health;
@@ -47,13 +48,27 @@ public class PlayerController : PhysicsEntity
     [SerializeField]
     private GameObject deathExplosion;
 
+    [SerializeField]
+    protected AudioClip SFXDie;
+
+    [SerializeField]
+    protected AudioClip SFXHurt;
+
+    [SerializeField]
+    protected AudioClip SFXJump;
+
+    [SerializeField]
+    protected AudioClip SFXLand;
+
     protected SpriteRenderer spriteRenderer;
     protected Animator anim;
+    protected AudioSource audio;
 
     void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.anim = GetComponent<Animator>();
+        this.audio = GetComponent<AudioSource>();
         QualitySettings.vSyncCount = 0;
     }
 
@@ -62,6 +77,7 @@ public class PlayerController : PhysicsEntity
         if (this.IsGrounded())
         {
             this.velocity.y = this.jumpVelocity;
+            this.audio.PlayOneShot(this.SFXJump);
         }
     }
 
@@ -71,6 +87,11 @@ public class PlayerController : PhysicsEntity
         {
             this.velocity.y = this.velocity.y * this.jumpRelease;
         }
+    }
+
+    virtual public void Land()
+    {
+        this.audio.PlayOneShot(this.SFXLand);
     }
 
     virtual public void Attack1()
@@ -100,7 +121,7 @@ public class PlayerController : PhysicsEntity
 
     virtual public void Hurt()
     {
-        this.anim.SetBool("IsHurt", true);
+        this.audio.PlayOneShot(this.SFXHurt);
     }
 
     virtual public void Hurt(float dmg)
@@ -110,10 +131,21 @@ public class PlayerController : PhysicsEntity
         this.Knockback();
     }
 
+    virtual public void StrtDeath()
+    {
+        this.audio.PlayOneShot(this.SFXDie);
+    }
+
+    virtual public void EndDeath()
+    {
+        Destroy(this.gameObject);
+    }
+
     virtual protected void Knockback()
     {
         this.knockBackInvincabilityTimer = this.knockBackInvincability;
         this.rb2d.velocity = this.knockBackDirection.normalized * this.knockBackForce;
+        this.anim.SetBool("IsHurt", true);
     }
 
     protected void Start()
