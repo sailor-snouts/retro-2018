@@ -262,6 +262,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114536301018141758, guid: 6b4f686080dc148639d9d63cdfd59e8e,
+        type: 2}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b4f686080dc148639d9d63cdfd59e8e, type: 2}
   m_IsPrefabAsset: 0
@@ -1632,18 +1637,6 @@ Prefab:
       propertyPath: m_Name
       value: LaserDrone (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1976153060031996, guid: 6b4f686080dc148639d9d63cdfd59e8e, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259479545173630, guid: 6b4f686080dc148639d9d63cdfd59e8e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259479545173630, guid: 6b4f686080dc148639d9d63cdfd59e8e, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b4f686080dc148639d9d63cdfd59e8e, type: 2}
   m_IsPrefabAsset: 0
@@ -2780,8 +2773,12 @@ CompositeCollider2D:
         Y: 110000000
       - X: 110000000
         Y: -70000000
-      - X: 20000000
+      - X: 10000000
         Y: -70000000
+      - X: 10000000
+        Y: -80000000
+      - X: 20000000
+        Y: -80000000
       - X: 20000000
         Y: -220000000
       - X: -10000000
@@ -3253,7 +3250,9 @@ CompositeCollider2D:
       - {x: 19, y: 11}
       - {x: 11, y: 11}
       - {x: 11, y: -7}
-      - {x: 2, y: -7}
+      - {x: 1, y: -7}
+      - {x: 1, y: -8}
+      - {x: 2, y: -8}
       - {x: 2, y: -22}
       - {x: -1, y: -22}
       - {x: -1, y: -7}
@@ -7144,6 +7143,15 @@ Tilemap:
     second:
       m_TileIndex: 4
       m_TileSpriteIndex: 4
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 1, y: -8, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -13646,7 +13654,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: e9cc78868a5ac774e82d1887079ed386, type: 2}
   - m_RefCount: 72
     m_Data: {fileID: 11400000, guid: 69185e4fdfbb1ec438b55bb76c6d345f, type: 2}
-  - m_RefCount: 624
+  - m_RefCount: 625
     m_Data: {fileID: 11400000, guid: 890343687afe445dbbe417e6dec07a74, type: 2}
   - m_RefCount: 247
     m_Data: {fileID: 11400000, guid: 548a452d6932e4c2582ae122d8fe0b26, type: 2}
@@ -13663,7 +13671,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 811de8802bbd0924985a2995eea278f3, type: 3}
   - m_RefCount: 72
     m_Data: {fileID: 21300000, guid: ad6aca06e212b24428fd2f6b906e8ac7, type: 3}
-  - m_RefCount: 624
+  - m_RefCount: 625
     m_Data: {fileID: 21300000, guid: 76b721789732645e4b7ae536618aef0b, type: 3}
   - m_RefCount: 247
     m_Data: {fileID: 21300000, guid: e5d188b3daeac4428ba9bafa35daa123, type: 3}
@@ -13674,7 +13682,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 1128
+  - m_RefCount: 1129
     m_Data:
       e00: 1
       e01: 0
@@ -13693,7 +13701,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1128
+  - m_RefCount: 1129
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14073,7 +14081,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4903925361948846, guid: b9cc6dfd8b24145f584c13395bfc44ce, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4903925361948846, guid: b9cc6dfd8b24145f584c13395bfc44ce, type: 2}
       propertyPath: m_LocalPosition.z
@@ -14111,7 +14119,7 @@ Prefab:
     - target: {fileID: 114727830971584248, guid: b9cc6dfd8b24145f584c13395bfc44ce,
         type: 2}
       propertyPath: period
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4903925361948846, guid: b9cc6dfd8b24145f584c13395bfc44ce, type: 2}
       propertyPath: m_LocalScale.x
@@ -49304,6 +49312,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114727830971584248, guid: b9cc6dfd8b24145f584c13395bfc44ce,
+        type: 2}
+      propertyPath: period
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9cc6dfd8b24145f584c13395bfc44ce, type: 2}
   m_IsPrefabAsset: 0
@@ -49451,7 +49464,7 @@ Prefab:
     - target: {fileID: 114727830971584248, guid: b9cc6dfd8b24145f584c13395bfc44ce,
         type: 2}
       propertyPath: period
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4903925361948846, guid: b9cc6dfd8b24145f584c13395bfc44ce, type: 2}
       propertyPath: m_LocalScale.x

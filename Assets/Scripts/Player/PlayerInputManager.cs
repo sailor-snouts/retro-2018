@@ -141,19 +141,20 @@ public class PlayerInputManager : MonoBehaviour
     }
 
     protected void PauseInput()
-    { 
-        if (Input.GetKeyDown(KeyCode.JoystickButton7) || ((Input.GetKeyDown(KeyCode.Escape)) && (this.isKeyboardP1 || this.isKeyboardP2)))
+    {
+        if (Navigation.isPaused)
+        {
+            this.state = States.PAUSE;
+        }
+        else
+        {
+            this.state = States.GAME;
+            this.menu = null;
+        }
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.JoystickButton9) || ((Input.GetKeyDown(KeyCode.Escape)) && (this.isKeyboardP1 || this.isKeyboardP2)))
         {
             this.navigation.PauseGame();
-            if (Navigation.isPaused)
-            {
-                this.state = States.PAUSE;
-            }
-            else
-            {
-                this.state = States.GAME;
-                this.menu = null;
-            }
         }
     }
 
@@ -221,6 +222,12 @@ public class PlayerInputManager : MonoBehaviour
             this.player1.FinishAttak1();
             this.player1.FinishAttak2();
         }
+        //if( Input.GetKeyDown(KeyCode.JoystickButton9))
+        //{
+        //    this.state = States.PAUSE;
+        //    navigation.PauseGame();
+        //}
+
 
             float playerWalk1 = 0f;
         if(this.isKeyboardP1)
